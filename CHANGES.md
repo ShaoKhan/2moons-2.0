@@ -1,4 +1,8 @@
-### _v2.0.8 ShaoKhan 26.12.2021_
+### _v2.1.0 ShaoKhan 09.03.2022_
+<span style="color: #997766;">[Modules]</span>
+- Trader implemented
+
+### _v2.0.9 ShaoKhan 26.12.2021_
 <span style="color: green;">[Improvement]</span>
 - Resourcen menu sticky (playerwish)
 
