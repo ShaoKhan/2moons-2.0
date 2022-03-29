@@ -1,0 +1,38 @@
+.buildings_headline{
+  margin: 0;
+}
+
+
+.research-item {
+  margin: 0 0;
+  padding: 10px 0;
+  font-size: 14px;
+
+  .add-research {
+    height: 25px;
+  }
+}
+
+#progressbar {
+  height: 25px;
+}
+
+.build-data{
+
+  &-image{
+
+    img{
+      position: relative;
+      top: 10px;
+      left: 5px;
+      height: 220px;
+      width: 100%;
+    }
+
+  }
+
+  &_data{
+    padding: 8px 10px;
+  }
+
+}

@@ -1,6 +1,6 @@
 /** Edit Color here **/
 
-#.ui-widget-header{
+.ui-widget-header{
 	background-color:#D20000;
 }
 .res_name{
@@ -8,7 +8,7 @@
 }
 
 body {
-	background:url("img/bkd_page.jpg") no-repeat fixed center center #0d0d0d;
+	background:url("img/bg.jpg") no-repeat fixed center center #0d0d0d;
 	min-width: 1000px;
 }
 
@@ -137,12 +137,11 @@ select {
 }
 
 #planetSelectorWrapper {
-	width:145px;
+	width:auto;
 }
 
 #planetSelector {
-	margin: 4px 0px;
-	width:145px;
+	margin: 4px 0;
 }
 
 /* Resources */
@@ -296,10 +295,6 @@ select {
 	color:lime
 }
 
-.owntransport {
-	color:#a0ffa0
-}
-
 .ownespionage,.ownmissile {
 	color:#fc6
 }
@@ -379,8 +374,9 @@ select {
 }
 
 .bar-percentage img {
-  	width: 42px;
-    height: 16px;
+  	width: 100%;
+    height: auto;
+	margin-right: 5px;
 }
 
 .bar-container {
@@ -534,7 +530,7 @@ th a,.res_current{
 }
 
 .ui-progressbar-value {
-	background-image: url(img/processbar.gif);
+	background-image: url(img/processbar2.gif);
 	background-position:top left;
 	border-color:#000;
 }
@@ -580,7 +576,7 @@ th a,.res_current{
 
 .ui-tabs {
 	border:1px solid #000;
-	background:transaprent;
+	background:transparent;
 }
 
 /** CSS PERSO **/
@@ -605,7 +601,7 @@ th a,.res_current{
 
 #contentPlanet {
 	overflow: hidden;
-	width: 705px;
+	/*width: 705px;*/
 	height: 220px;
 	position: relative;
 	border: 1px solid #000;
