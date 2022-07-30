@@ -6,9 +6,12 @@ $(function() {
 		return false;
 	});
 	
-	$('.fancybox').fancybox({
+	/*$('.fancybox').fancybox({
 		'type' : 'iframe',
 		'padding' : 1,
+	});*/
+	Fancybox.bind("[data-fancybox]", {
+		// Your options go here
 	});
 	
 	if(LoginConfig.isMultiUniverse)

@@ -1,0 +1,23 @@
+@import '../../../node_modules/bootstrap-scss/bootstrap';
+@import '../_variables.scss';
+
+body {
+  background-image: url('../../images/login/bg_2.jpg');
+  color: $white;
+}
+
+.news {
+  background: rgba(57, 57, 57, 0.4);
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  background: rgba(57, 57, 57, 0.4);
+
+  a {
+    color: $green;
+    text-decoration: none;
+    font-weight: bolder;
+  }
+}

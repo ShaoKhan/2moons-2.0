@@ -1,0 +1,9 @@
+@import '../../../node_modules/bootstrap-scss/bootstrap';
+@import '../_variables.scss';
+@import 'topnav';
+@import "main_header";
+
+body {
+  background-image: url('../../images/login/bg_2.jpg');
+  color: $white;
+}

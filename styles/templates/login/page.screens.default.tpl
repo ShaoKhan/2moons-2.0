@@ -7,7 +7,7 @@
 				<div class="row">
 				{foreach $screenshots as $screenshot}
 					<div class="col-lg-4" style="margin-bottom: 20px;">
-						<a class="gallery" href="{$screenshot.path}" target="_blank" rel="gallery">
+						<a class="gallery" href="{$screenshot.path}" target="_blank" rel="gallery" data-fancybox>
 							<img src="{$screenshot.thumbnail}" alt="" width="120" height="120" class="img-rounded">
 						</a>
 					</div>
@@ -20,7 +20,10 @@
 {block name="script"}
 <script>
 $(function() {
-	$(".gallery").fancybox();
+	/*$(".gallery").fancybox();*/
+	Fancybox.bind("[data-fancybox]", {
+		// Your options go here
+	});
 });
 </script>
 {/block}

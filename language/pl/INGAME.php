@@ -1191,6 +1191,7 @@ $LNG['trade_BuyEmptyOrZero']      = "Nie możesz po prostu kupić %s %s. Powinno
 $LNG['trade_TradersGone']         = "Handlarz wyjechał z torbą i bagażem.";
 $LNG['trade_PleaseWait']          = "Powinieneś chwilę poczekać zanim to zrobisz.";
 $LNG['trade_BuyTooMuch']          = "Nie możesz handlować więcej niż pozwala na handel.";
+$LNG['trade_moreThanAvailable']   = "Więc chcesz uzyskać więcej niż to, co jest w punkcie handlowym. To może nie być mądre.";
 $LNG['trade_PlanetManipulation']  = "Szybko sprowadzasz zasoby z obcej planety.<br />Niestety, byłeś obserwowany.";
 $LNG['trade_Success']             = "Udało Ci się wymienić %s %s na %s %s.";
 $LNG['trade_for']                 = "przeciw";

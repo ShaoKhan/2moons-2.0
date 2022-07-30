@@ -97,45 +97,6 @@ select {
 	clear: both;
 }
 
-/* Main navigation */
-#main_header {
-	background: rgba(0, 0, 0, 0.8);
-	text-align: center;
-}
-
-.main_list_left {
-	float: left;
-}
-
-.main_list_left ul {
-	list-style: none;
-	display: inline-flex;
-    padding: 0 0 0 5px;
-}
-
-.main_list_left li {
-	
-}
-
-.main_list_right {
-	float: right;
-}
-
-.main_list_right ul {
-	list-style: none;
-	display: inline-flex;
-    padding: 0 5px 0 0;
-}
-
-.main_list_right li {
-	
-}
-
-.main_list_left li a, .main_list_right li a {
-	font-size: 14px;
-	padding: 5px;
-}
-
 #planetSelectorWrapper {
 	width:auto;
 }
@@ -324,25 +285,6 @@ select {
 
 #resourcesdiv{
 	text-align:center;
-}
-
-/** MAIN NAVIGATION HEADER **/
-#newmesnum {
-    color: #fff;
-    background-color: #dc3545;
-    padding: 1px 5px 1px 5px;
-}
-
-#newmes {
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .25rem;
-    position: relative;
-    margin: 0 0 0 -10px;
 }
 
 /** TOPNAV **/

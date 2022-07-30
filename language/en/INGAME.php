@@ -1194,6 +1194,7 @@ $LNG['trade_BuyEmptyOrZero']      = "You can't just buy %s %s. It should be at l
 $LNG['trade_TradersGone']         = "The trader has gone bag and baggage.";
 $LNG['trade_PleaseWait']          = "You should wait a moment before doing this.";
 $LNG['trade_BuyTooMuch']          = "You cannot trade more than trade allows.";
+$LNG['trade_moreThanAvailable']   = "So you want to get more than what's in the trading post. That might not be smart.";
 $LNG['trade_PlanetManipulation']  = "You quickly fetch the resources from a strange planet.<br />Unfortunately, you were observed.";
 $LNG['trade_Success']             = "You were able to successfully trade %s %s for %s %s.";
 $LNG['trade_for']                 = "against";

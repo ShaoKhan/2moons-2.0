@@ -1,0 +1,75 @@
+.main_header {
+  display: flex;
+  padding: 5px 0 0 0;
+  background: rgba(22, 23, 22, 0.8);
+
+  ul {
+    display: inline-flex;
+    list-style: none;
+
+    li {
+      padding: 0 10px 0 0;
+      color: $white;
+
+      a {
+        color: $white;
+
+        :hover {
+          color: $red;
+        }
+      }
+    }
+  }
+
+  .left {
+    ul {
+      li {
+        a {
+          text-decoration: none;
+
+          :active, :visited {
+            color: $white;
+          }
+
+          #newmes {
+            font-size: .6rem;
+            margin: 0 0 0 -6px;
+            background: $red;
+
+            #newmesnum {
+              padding: 4px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .center {
+
+    display: inline-flex;
+    justify-content: center;
+
+    a {
+      text-decoration: none;
+      color: $white;
+
+      i {
+        margin: 0 0 0 4px;
+      }
+    }
+  }
+
+  .right{
+    ul {
+      li {
+        a {
+          text-decoration: none;
+          :active, :visited {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}

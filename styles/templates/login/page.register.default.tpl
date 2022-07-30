@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{$LNG.siteTitleRegister}</div>
+					<div class="panel-heading"><h2>{$LNG.siteTitleRegister}</h2></div>
                     <div class="panel-body">
 						<form id="registerForm" method="post" action="index.php?page=register" data-action="index.php?page=register">
 							<input type="hidden" value="send" name="mode">

@@ -11,11 +11,11 @@
                                     style="font-weight: bold; color: lime;">{$onlineUser|number}</span>
                         </div>
                         <div class="col-lg-5">
-                            {*<i class="fas fa-users"></i> {$LNG.ov_admins_online}
+                            <i class="fas fa-users"></i> {$LNG.ov_admins_online}
                             {foreach $AdminsOnline as $ID => $Name}{if !$Name@first}&nbsp;&bull;&nbsp;{/if}
                                 <a href="#" onclick="return Dialog.PM({$ID})">{$Name}</a>
                                 {foreachelse}{$LNG.ov_no_admins_online}
-                           {/foreach}*}
+                           {/foreach}
                         </div>
                         <div class="col-lg-3">
                             {if $AdminsOnline|number > 0}

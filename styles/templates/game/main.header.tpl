@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-
+<html lang="de">
 <head>
 	<title>{block name="title"} - {$uni_name} - {$game_name}{/block}</title>
 	<meta name="generator" content="Space-Tactics {$VERSION}">
-	<!-- 
-		This website is powered by Space-Taactics {$VERSION}
-		Space-Tactics is forked by 2moons and copyright 2009-2018 of Jan Kröpke. Extensions are copyright of their respective owners.
-	-->
 	{if !empty($goto)}
 	<meta http-equiv="refresh" content="{$gotoinsec};URL={$goto}">
 	{/if}
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="./styles/resource/css/base/boilerplate.css?v={$REV}">
+	{*<link rel="stylesheet" type="text/css" href="./styles/resource/css/base/boilerplate.css?v={$REV}">
 	<link rel="stylesheet" type="text/css" href="./styles/resource/css/ingame/main.css?v=">
 	<link rel="stylesheet" type="text/css" href="./styles/resource/css/ingame/index.css?v=">
-	<link rel="stylesheet" type="text/css" href="./styles/resource/css/ingame/leftmenu.css?v=">
+	<link rel="stylesheet" type="text/css" href="./styles/resource/css/ingame/leftmenu.css?v=">*}
 	<link rel="stylesheet" type="text/css" href="./styles/resource/css/base/jquery.css?v={$REV}">
 	<link rel="stylesheet" type="text/css" href="./styles/resource/css/base/jquery.fancybox.css?v={$REV}">
-	<link rel="stylesheet" type="text/css" href="./styles/resource/css/base/validationEngine.jquery.css?v={$REV}">
-	<link rel="stylesheet" type="text/css" href="{$dpath}ingame.css?v={$REV}">
+	{*<link rel="stylesheet" type="text/css" href="./styles/resource/css/base/validationEngine.jquery.css?v={$REV}">
+	<link rel="stylesheet" type="text/css" href="{$dpath}ingame.css?v={$REV}">*}
+	<link rel="stylesheet" type="text/css" href="./styles/resource/css/ingame/styles.css">
+
+
 	<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 	<script type="text/javascript">
 	var ServerTimezoneOffset = {$Offset};
