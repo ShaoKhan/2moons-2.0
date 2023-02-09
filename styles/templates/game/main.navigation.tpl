@@ -19,7 +19,7 @@
 		{if $authlevel > 0}
 			<div class="menu_content_left-link"><a href="game.php?page=galaxynew">{$LNG.lm_galaxy}-new</a></div>
 		{/if}
-		<div class="menu_content_left-link"><a href="game.php?page=playertrader">Händler</a></div>
+		<!--div class="menu_content_left-link"><a href="game.php?page=playertrader">Händler</a></div-->
 		{if isModuleAvailable($smarty.const.MODULE_ALLIANCE)}<div class="menu_content_left-link"><a href="game.php?page=alliance">{$LNG.lm_alliance}</a></div>{/if}
 		{if isModuleAvailable($smarty.const.MODULE_SUPPORT)}<div class="menu_content_left-link"><a href="game.php?page=ticket">{$LNG.lm_support}</a></div>{/if}
 		<div class="menu_content_left-link"><a href="index.php?page=rules" target="rules">{$LNG.lm_rules}</a></div>
@@ -31,21 +31,27 @@
 	<div style="margin: 5px 5px;">
 		{*<a href="https://www.arena-top100.com/index.php?a=in&u=ShaoKhan&callback={$cb}" target="_blank"><img src="https://www.arena-top100.com/images/vote/mu-private-servers.png" alt="MU Online Private Servers" width="88" height="53" /></a>*}
 		<a href="https://www.arena-top100.com/index.php?a=in&u=ShaoKhan&id{$uid}" target="_blank"><img src="https://www.arena-top100.com/images/vote/mu-private-servers.png" alt="MU Online Private Servers" width="88" height="53" /></a>
+{*		<a href="voteST.php?st={$uid|base64_encode}" target="_blank"><img src="https://www.arena-top100.com/images/vote/mu-private-servers.png" alt="MU Online Private Servers" width="88" height="53" /></a>*}
 			     {*https://www.arena-top100.com/index.php?a=in&u=SERVER_ID&id=VOTER_USERNAME_OR_ID*}
-		<a href="https://topg.org/games-mmorpg/game-635023" target="_blank"><img src="https://topg.org/topg.gif" width="88" height="53" border="0" alt="Space tactics - MMORPG Free Game"></a>
+		{*<a href="https://topg.org/games-mmorpg/game-635023" target="_blank"><img src="https://topg.org/topg.gif" width="88" height="53" border="0" alt="Space tactics - MMORPG Free Game"></a>*}
 		<a href="https://browsermmorpg.com/vote.php?id=1642" target="_blank" title="Vote at Browser MMORPG"><img src="https://browsermmorpg.com/img/vote_banner.gif" alt="Vote at Browser MMORPG" /></a>
 	</div>
 	<div class="menu_content_full">
-		{if $authlevel > 0}<a href="./admin.php" style="color:lime">{$LNG.lm_administration}</a>{/if}
+		{if $authlevel > 0}
+			<div><a href="voteST.php?st={$uid|base64_encode}" target="_blank"><img src="https://www.arena-top100.com/images/vote/mu-private-servers.png" alt="MU Online Private Servers" width="88" height="53" /></a></div>
+			<div><a href="https://topg.org/games-mmorpg/game-635023-{$username}" target="_blank"><img src="https://topg.org/topg.gif" width="88" height="53" border="0" alt="Space tactics - MMORPG Free Game"></a></div>
+			{*<div><a href="https://www.arena-top100.com/index.php?a=in&u={$username}&id{$uid}" target="_blank"><img src="https://www.arena-top100.com/images/vote/mu-private-servers.png" alt="MU Online Private Servers" width="88" height="53" /></a></div>*}
+			<div><a href="./admin.php" style="color:lime">{$LNG.lm_administration}</a></div>
+		{/if}
 	</div>
 
 	<div class="menu_footer">
 		<div><i class="fas fa-clock"></i> <span class="servertime">{$servertime}</span></div>
 		<div><i class="far fa-copyright"></i> Copyright {$game_name} 2021</div>
 	</div>
-	<div class="center">
-		<div>TeamSpeak³</div>
-		<a href="https://ts3index.com/?page=server&id=269982" target="_blank"><img src="https://ts3index.com/banner/s401_269982.png" alt="TS3index.com" style="border-style: none;" /></a>
-		<div><a href="ts3server://85.214.160.237?port=9987">{$LNG.lm_connect_ts}</a></div>
-	</div>
+{*	<div class="center">*}
+{*		<div>TeamSpeak³</div>*}
+{*		<a href="https://ts3index.com/?page=server&id=269982" target="_blank"><img src="https://ts3index.com/banner/s401_269982.png" alt="TS3index.com" style="border-style: none;" /></a>*}
+{*		<div><a href="ts3server://85.214.160.237?port=9987">{$LNG.lm_connect_ts}</a></div>*}
+{*	</div>*}
 </div>

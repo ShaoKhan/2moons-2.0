@@ -136,7 +136,11 @@ class ShowOverviewPage extends AbstractGamePage
 		$RefLinks		= array();
 
         $db = Database::get();
-		
+
+        if($USER['authlevel'] >= 3){
+
+        }
+
 		foreach($USER['PLANETS'] as $ID => $CPLANET)
 		{		
 			if ($ID == $PLANET['id'] || $CPLANET['planet_type'] == 3)

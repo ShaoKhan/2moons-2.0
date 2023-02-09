@@ -44,7 +44,6 @@
                         <div class="col-lg-10">{$fleet.text}</div>
                     </div>
                 {/foreach}
-
             </div>
 
             <div class="" style="">

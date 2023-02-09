@@ -5,11 +5,14 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Jan-Otto Kröpke",
-            "email": "kroepke@outlook.com"
+            "name": "Shao Khan",
+            "email": "ShaoKhan@gmx.de"
         }
     ],
     "minimum-stability": "stable",
-    "require": {},
+    "require": {
+      "ext-pdo": "*",
+      "ext-curl": "*"
+    },
     "require-dev": {}
 }

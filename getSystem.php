@@ -29,10 +29,6 @@ $div = "";
     $div1 .= "</div>";
     
     foreach($pdo->query('SELECT p.name planet,u.username `user` from uni'.$z.'_planets p, uni'.$z.'_users u WHERE p.galaxy = '.$x.' AND p.system = '.$y.' AND  p.id_owner = u.id') as $row){
-
-        
-        
-        
         if(!empty($row)){
             $div .= "<div class='row'>";
             $div .= "<div class='col-lg-4'>".$row["planet"]."</div>";
