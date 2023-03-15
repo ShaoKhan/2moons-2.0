@@ -732,12 +732,6 @@ class ResourceUpdate
                             $costResources[903] = 0;
                         }
 
-
-                        if($data->adminAccess === 1) {
-                            #echo 'Money: '.$LNG['sys_notenough_money'];
-                            #echo 'test: ' .$LNG['tech'][$Element];
-                        }
-
                         $Message = sprintf(
                             $LNG['sys_notenough_money'],
                             $this->PLANET['name'],
