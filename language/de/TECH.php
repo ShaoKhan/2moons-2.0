@@ -76,7 +76,7 @@ $LNG['tech'] = array(
 	0 => 'Gebäude',
 	1 => 'Metallmine',
 	2 => 'Kristallmine',
-	3 => 'Deuteriumsynthetisierer',
+	3 => 'Deuteriumsynthesizer',
 	4 => 'Solarkraftwerk',
 	6 => 'TechnoDome',
 	12 => 'Atomkraftwerk',
@@ -92,7 +92,7 @@ $LNG['tech'] = array(
 	44 => 'Raketensilo',
 	40 => 'Mondgebäude',
 	41 => 'Basisstützpunkt',
-	42 => 'Sensorenphalax',
+	42 => 'Sensorenphalanx',
 	43 => 'Sprungtor',
 
 	100 => 'Forschungen',
