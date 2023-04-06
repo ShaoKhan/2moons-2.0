@@ -236,9 +236,7 @@ class ShowPlayertraderPage extends AbstractGamePage
             $course              = $this->getAverageCourse();
             $aktCourse           = $course[0][$sellerWantsResource.$sellerResource];
             $sendResources       = ceil($buy * $aktCourse) / 10;
-            
-            echo $sellerResource . ' ---> ' . $sellerWantsResource."<br />";
-            
+
             
             $updateTrader = "UPDATE %%PLAYERTRADER%% SET resCount = ".($tradeData["resCount"] - $buy).", changeAmount = ".($tradeData["changeAmount"] - $sendResources)." WHERE id = :tradeId LIMIT 1";
             Database::get()->update($updateTrader, ['tradeId' => $tradeData["id"]]);
@@ -291,8 +289,8 @@ class ShowPlayertraderPage extends AbstractGamePage
             $sellerText = sprintf($LNG["trade_SellerMessageText"], $buyer["username"], number_format($buy, 0, ',', '.'), ucfirst($LNG['rs_'.$sellType]), number_format($sendResources, 0, ',', '.'), ucfirst($LNG['rs_'.$buyType]));
             $buyerText = sprintf($LNG["trade_BuyerMessageText"], number_format($sendResources, 0, ',', '.'), ucfirst($LNG['rs_'.$buyType]),number_format($buy, 0, ',', '.'), ucfirst($LNG['rs_'.$sellType]));
             //send to seller
-            PlayerUtil::sendMessage($tradeData["playerId"], 0, "Handelsposten", 0, "Handel erfolgreich", $sellerText, time(), 0, 1);
-            PlayerUtil::sendMessage(           $USER["id"], 0, "Handelsposten", 0, "Handel erfolgreich",  $buyerText, time(), 0, 1);
+            PlayerUtil::sendMessage($tradeData["playerId"], 0, "Handelsposten", 75, "Handel erfolgreich", $sellerText, time(), 0, 1);
+            PlayerUtil::sendMessage(           $USER["id"], 0, "Handelsposten", 75, "Handel erfolgreich",  $buyerText, time(), 0, 1);
             
             // Gebühr für Händler
             // belade und versende Flotte des Käufers

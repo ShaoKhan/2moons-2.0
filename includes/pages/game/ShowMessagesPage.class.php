@@ -372,7 +372,7 @@ class ShowMessagesPage extends AbstractGamePage
 
         $db = Database::get();
 
-        $TitleColor    	= array ( 0 => '#FFFF00', 1 => '#FF6699', 2 => '#FF3300', 3 => '#FF9900', 4 => '#773399', 5 => '#009933', 15 => '#6495ed', 50 => '#666600', 99 => '#007070', 100 => '#ABABAB', 999 => '#CCCCCC');
+        $TitleColor    	= array ( 0 => '#FFFF00', 1 => '#FF6699', 2 => '#FF3300', 3 => '#FF9900', 4 => '#773399', 5 => '#009933', 15 => '#6495ed', 50 => '#666600', 75 => '#4eee94', 99 => '#007070', 100 => '#ABABAB', 999 => '#CCCCCC');
 
         $sql = "SELECT COUNT(*) as state FROM %%MESSAGES%% WHERE message_sender = :userID AND message_type != 50;";
         $MessOut = $db->selectSingle($sql, array(

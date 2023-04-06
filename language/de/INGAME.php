@@ -512,6 +512,7 @@ $LNG['mg_type'][4]                      = 'System Nachrichten';
 $LNG['mg_type'][5]                      = 'Transport';
 $LNG['mg_type'][15]                     = 'Expeditionberichte';
 $LNG['mg_type'][50]                     = 'Game Nachrichten';
+$LNG['mg_type'][75]                     = 'Handelsposten';
 $LNG['mg_type'][99]                     = 'Bauschleife';
 $LNG['mg_type'][100]                    = 'Alle Nachrichten';
 $LNG['mg_type'][999]                    = 'Postausgang';

@@ -44,6 +44,11 @@ if($USER['authlevel'] == AUTH_ADM && !empty($uni))
 }
 
 $page	= HTTP::_GP('page', '');
+
+$path = null;
+$timestamp = null;
+
+
 switch($page)
 {
 	case 'logout':

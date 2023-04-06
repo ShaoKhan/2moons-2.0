@@ -1,6 +1,7 @@
 {include file="overall_header.tpl"}
 <div id="leftmenu">
 	<ul id="menu">
+
 		<li style="background-image: url('./styles/theme/gow/img/menu-top.png');height:100px;"></li>
 		<li><a href="javascript:void(0);"><span style="color:lime">{$LNG.mu_general}</span></a></li>
 		{if allowedTo('ShowInformationPage')}<li><a href="?page=infos" target="Hauptframe">{$LNG.mu_game_info}</a></li>{/if}

@@ -45,7 +45,7 @@ class ShowLoginPage extends AbstractLoginPage
 		if (isset($loginData))
 		{
 			$hashedPassword = PlayerUtil::cryptPassword($password);
-			if($loginData['password'] != $hashedPassword)
+			if($loginData['password'] && ($loginData['password'] != $hashedPassword))
 			{
 				// Fallback pre 1.7
 				if($loginData['password'] == md5($password)) {

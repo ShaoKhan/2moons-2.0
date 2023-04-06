@@ -219,18 +219,18 @@
 		</tr>
 	</table>
 </center>
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
-	google.load("feeds", "1");
-	google.setOnLoadCallback(initialize);
-	function initialize() {
-		var feedControl = new google.feeds.FeedControl();
-		feedControl.addFeed("https://github.com/jkroepke/2Moons/commits/master.atom", "");
-		//feedControl.addFeed("http://code.google.com/feeds/p/2moons/svnchanges/basic", "");
-		feedControl.draw(document.getElementById("feed"));
-		//var feedControl = new google.feeds.FeedControl();
-        //feedControl.addFeed("https://www.facebook.com/feeds/page.php?id=129282307106646&format=rss20", "");
-        //feedControl.draw(document.getElementById("news"));
-	}
+	// google.load("feeds", "1");
+	// google.setOnLoadCallback(initialize);
+	// function initialize() {
+	// 	var feedControl = new google.feeds.FeedControl();
+	// 	feedControl.addFeed("https://github.com/jkroepke/2Moons/commits/master.atom", "");
+	// 	//feedControl.addFeed("http://code.google.com/feeds/p/2moons/svnchanges/basic", "");
+	// 	feedControl.draw(document.getElementById("feed"));
+	// 	//var feedControl = new google.feeds.FeedControl();
+    //     //feedControl.addFeed("https://www.facebook.com/feeds/page.php?id=129282307106646&format=rss20", "");
+    //     //feedControl.draw(document.getElementById("news"));
+	// }
 </script>
 {include file="overall_footer.tpl"}

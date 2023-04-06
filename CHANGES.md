@@ -1,3 +1,12 @@
+#### _v2.3.5 ShaoKhan 07.04.2023_
+
+<span style="color: green;">[Improvement]</span>
+- Playertrader in Messages
+
+<span style="color: red;">[Bug]</span>
+- Bug in Admin Enviroment
+- Bug in Login
+
 #### _v2.1.2 ShaoKhan 10.03.2022_
 <span style="color: red;">[Bug]</span>
 - Fehler in der Berechnung beim Händler
