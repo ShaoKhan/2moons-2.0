@@ -51,43 +51,44 @@ $LNG['tn_delete_mode']   = 'Votre compte %s va être supprimé !';
 
 //----------------------------------------------------------------------------//
 //LEFT MENU
-$LNG['lm_changelog']      = 'Changelog';
-$LNG['lm_overview']       = 'Vue Générale';
-$LNG['lm_galaxy']         = 'Galaxie';
-$LNG['lm_empire']         = 'Empire';
-$LNG['lm_fleet']          = 'Flotte';
-$LNG['lm_buildings']      = 'Bâtiments';
-$LNG['lm_research']       = 'Recherche';
-$LNG['lm_shipshard']      = 'Chantier Spatial';
-$LNG['lm_defenses']       = 'Défense';
-$LNG['lm_resources']      = 'Ressources';
-$LNG['lm_officiers']      = 'Officiers';
-$LNG['lm_trader']         = 'Marchand';
-$LNG['lm_fleettrader']    = 'Ferrailleur Intergalactique';
-$LNG['lm_technology']     = 'Technologie';
-$LNG['lm_messages']       = 'Messages';
-$LNG['lm_alliance']       = 'Alliance';
-$LNG['lm_buddylist']      = 'Liste d\'amis';
-$LNG['lm_notes']          = 'Notes';
-$LNG['lm_statistics']     = 'Classement';
-$LNG['lm_search']         = 'Recherche';
-$LNG['lm_options']        = 'Options';
-$LNG['lm_banned']         = 'Pilori';
-$LNG['lm_forums']         = 'Forum';
-$LNG['lm_logout']         = 'Déconnexion';
-$LNG['lm_administration'] = 'Administration';
-$LNG['lm_queue']          = 'Queues';
-$LNG['lm_topkb']          = 'Hall of Fame';
-$LNG['lm_faq']            = 'Guide du débutant';
-$LNG['lm_records']        = 'Records';
-$LNG['lm_chat']           = 'Chat';
-$LNG['lm_support']        = 'Ticket Support';
-$LNG['lm_rules']          = 'Règlement';
-$LNG['lm_battlesim']      = 'Simulateur de Combat';
-$LNG['lm_playercard']     = 'Profil du joueur';
-$LNG['lm_info']           = 'Info';
-$LNG['lm_disclamer']      = 'Crédits';
-$LNG['lm_connect_ts']     = 'Associer';
+$LNG['lm_changelog']        = 'Changelog';
+$LNG['lm_overview']         = 'Vue Générale';
+$LNG['lm_galaxy']           = 'Galaxie';
+$LNG['lm_empire']           = 'Empire';
+$LNG['lm_fleet']            = 'Flotte';
+$LNG['lm_buildings']        = 'Bâtiments';
+$LNG['lm_research']         = 'Recherche';
+$LNG['lm_shipshard']        = 'Chantier Spatial';
+$LNG['lm_defenses']         = 'Défense';
+$LNG['lm_resources']        = 'Ressources';
+$LNG['lm_officiers']        = 'Officiers';
+$LNG['lm_trader']           = 'Marchand';
+$LNG['lm_fleettrader']      = 'Ferrailleur Intergalactique';
+$LNG['lm_technology']       = 'Technologie';
+$LNG['lm_messages']         = 'Messages';
+$LNG['lm_alliance']         = 'Alliance';
+$LNG['lm_buddylist']        = 'Liste d\'amis';
+$LNG['lm_notes']            = 'Notes';
+$LNG['lm_statistics']       = 'Classement';
+$LNG['lm_search']           = 'Recherche';
+$LNG['lm_options']          = 'Options';
+$LNG['lm_banned']           = 'Pilori';
+$LNG['lm_forums']           = 'Forum';
+$LNG['lm_logout']           = 'Déconnexion';
+$LNG['lm_administration']   = 'Administration';
+$LNG['lm_queue']            = 'Queues';
+$LNG['lm_topkb']            = 'Hall of Fame';
+$LNG['lm_faq']              = 'Guide du débutant';
+$LNG['lm_records']          = 'Records';
+$LNG['lm_chat']             = 'Chat';
+$LNG['lm_support']          = 'Ticket Support';
+$LNG['lm_rules']            = 'Règlement';
+$LNG['lm_battlesim']        = 'Simulateur de Combat';
+$LNG['lm_playercard']       = 'Profil du joueur';
+$LNG['lm_info']             = 'Info';
+$LNG['lm_disclamer']        = 'Crédits';
+$LNG['lm_connect_ts']       = 'Associer';
+$LNG['lm_playerstatistics'] = 'Statistiques des joueurs';
 
 //----------------------------------------------------------------------------//
 //OVERVIEW
@@ -1190,3 +1191,9 @@ $LNG["trade_BetaTest"]            = "BÊTA - Test utilisateur";
 $LNG["trade_ownTrade"]            = "propre commerce";
 $LNG["trade_SellerMessageText"]   = "Un navire de <b>%s</b> a accosté au poste de traite et a récupéré %s %s pour %s %s.";
 $LNG["trade_BuyerMessageText"]    = "Votre navire a accosté au poste de traite et a récupéré %s %s pour %s %s.";
+
+// Chat
+// ------------------------------------------------ ------------------------------------------ //
+$LNG["igchat_headline"] = "Fréquences de salutation ouvertes";
+$LNG["igchat_placeholder"] = "Votre message";
+$LNG["igchat_buttontext"] = "Envoyer";

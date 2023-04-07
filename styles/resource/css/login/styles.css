@@ -5908,9 +5908,19 @@ td.visible-print {
   }
 }
 body {
-  background: url(../../images/login/bg.png) center center fixed;
+  /*background: url(../../images/login/bg.png) center center fixed;*/
   background-size: 100% 100%;
 }
+
+.background-video{
+  position: fixed; right: 0; bottom: 0;
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto; z-index: -100;
+  background: url(../../images/login/bg.png) center center fixed;
+  background-size: cover;
+  margin: 0 auto;
+}
+
 .form-control {
   -webkit-box-shadow: none;
   box-shadow: none;

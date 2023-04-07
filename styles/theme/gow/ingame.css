@@ -12,6 +12,15 @@ body {
 	min-width: 1000px;
 }
 
+.background-video{
+	position: fixed; right: 0; bottom: 0;
+	min-width: 100%; min-height: 100%;
+	width: auto; height: auto; z-index: -100;
+	background: url(img/bg.jpg) center center fixed;
+	background-size: cover;
+	margin: 0 auto;
+}
+
 body,input,select,button,textarea,a,td,th,tr,table,a:visited{
 	color:#DDD;
 }
@@ -24,7 +33,6 @@ input[type="radio"] {
 	background:transparent;
 	border:0 none;
 }
-
 
 #menu li:first-child, #menu li:last-child{
 	background-color:transparent;
@@ -342,7 +350,7 @@ select {
     vertical-align: baseline;
     border-radius: .25rem;
     position: relative;
-    margin: 0 0 0 -10px;
+
 }
 
 /** TOPNAV **/

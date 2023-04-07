@@ -6,13 +6,13 @@
  *
  * For the full copyright and license information, please view the LICENSE
  *
- * @package 2Moons
- * @author Jan-Otto Kröpke <slaver7@gmail.com>
+ * @package   2Moons
+ * @author    Jan-Otto Kröpke <slaver7@gmail.com>
  * @copyright 2009 Lucky
  * @copyright 2016 Jan-Otto Kröpke <slaver7@gmail.com>
- * @licence MIT
- * @version 1.8.0
- * @link https://github.com/jkroepke/2Moons
+ * @licence   MIT
+ * @version   1.8.0
+ * @link      https://github.com/jkroepke/2Moons
  */
 
 $LNG['Messages']      = 'Nachrichten';
@@ -62,43 +62,44 @@ $LNG['tn_delete_mode']   = 'Ihr Account wird am %s automatisch gelöscht!';
 
 //----------------------------------------------------------------------------//
 //LEFT MENU
-$LNG['lm_overview']       = 'Übersicht';
-$LNG['lm_galaxy']         = 'Galaxie';
-$LNG['lm_empire']         = 'Imperium';
-$LNG['lm_fleet']          = 'Flotte';
-$LNG['lm_buildings']      = 'Gebäude';
-$LNG['lm_research']       = 'Forschung';
-$LNG['lm_shipshard']      = 'Schiffswerft';
-$LNG['lm_defenses']       = 'Verteidigung';
-$LNG['lm_resources']      = 'Rohstoffe';
-$LNG['lm_officiers']      = 'Offiziere';
-$LNG['lm_trader']         = 'Händler';
-$LNG['lm_fleettrader']    = 'Schrotthändler';
-$LNG['lm_technology']     = 'Technologie';
-$LNG['lm_messages']       = 'Nachrichten';
-$LNG['lm_alliance']       = 'Allianz';
-$LNG['lm_buddylist']      = 'Buddylist';
-$LNG['lm_notes']          = 'Notizen';
-$LNG['lm_statistics']     = 'Statistik';
-$LNG['lm_search']         = 'Suche';
-$LNG['lm_options']        = 'Einstellungen';
-$LNG['lm_banned']         = 'Pranger';
-$LNG['lm_forums']         = 'Forum';
-$LNG['lm_logout']         = 'Logout';
-$LNG['lm_administration'] = 'Administration';
-$LNG['lm_queue']          = 'Queues';
-$LNG['lm_topkb']          = 'Hall of Fame';
-$LNG['lm_faq']            = 'FAQ';
-$LNG['lm_records']        = 'Rekorde';
-$LNG['lm_chat']           = 'Chat';
-$LNG['lm_changelog']      = 'Changelog';
-$LNG['lm_support']        = 'Support';
-$LNG['lm_rules']          = 'Regeln';
-$LNG['lm_battlesim']      = 'Kampfsimulator';
-$LNG['lm_playercard']     = 'Spielerinformationen';
-$LNG['lm_info']           = 'Informationen';
-$LNG['lm_disclamer']      = 'Impressum';
-$LNG['lm_connect_ts']     = 'Verbinden';
+$LNG['lm_overview']         = 'Übersicht';
+$LNG['lm_galaxy']           = 'Galaxie';
+$LNG['lm_empire']           = 'Imperium';
+$LNG['lm_fleet']            = 'Flotte';
+$LNG['lm_buildings']        = 'Gebäude';
+$LNG['lm_research']         = 'Forschung';
+$LNG['lm_shipshard']        = 'Schiffswerft';
+$LNG['lm_defenses']         = 'Verteidigung';
+$LNG['lm_resources']        = 'Rohstoffe';
+$LNG['lm_officiers']        = 'Offiziere';
+$LNG['lm_trader']           = 'Händler';
+$LNG['lm_fleettrader']      = 'Schrotthändler';
+$LNG['lm_technology']       = 'Technologie';
+$LNG['lm_messages']         = 'Nachrichten';
+$LNG['lm_alliance']         = 'Allianz';
+$LNG['lm_buddylist']        = 'Buddylist';
+$LNG['lm_notes']            = 'Notizen';
+$LNG['lm_statistics']       = 'Statistik';
+$LNG['lm_search']           = 'Suche';
+$LNG['lm_options']          = 'Einstellungen';
+$LNG['lm_banned']           = 'Pranger';
+$LNG['lm_forums']           = 'Forum';
+$LNG['lm_logout']           = 'Logout';
+$LNG['lm_administration']   = 'Administration';
+$LNG['lm_queue']            = 'Queues';
+$LNG['lm_topkb']            = 'Hall of Fame';
+$LNG['lm_faq']              = 'FAQ';
+$LNG['lm_records']          = 'Rekorde';
+$LNG['lm_chat']             = 'Chat';
+$LNG['lm_changelog']        = 'Changelog';
+$LNG['lm_support']          = 'Support';
+$LNG['lm_playerstatistics'] = 'Spielerstatistik';
+$LNG['lm_rules']            = 'Regeln';
+$LNG['lm_battlesim']        = 'Kampfsimulator';
+$LNG['lm_playercard']       = 'Spielerinformationen';
+$LNG['lm_info']             = 'Informationen';
+$LNG['lm_disclamer']        = 'Impressum';
+$LNG['lm_connect_ts']       = 'Verbinden';
 
 //----------------------------------------------------------------------------//
 //OVERVIEW
@@ -1208,3 +1209,9 @@ $LNG["trade_BetaTest"]            = "BETA - Usertest";
 $LNG["trade_ownTrade"]            = "eigener Handel";
 $LNG["trade_SellerMessageText"]   = "Ein Schiff von <b>%s</b> dockte am Handelsposten an und holte %s %s für %s %s ab.";
 $LNG["trade_BuyerMessageText"]    = "Dein Schiff dockte am Handelsposten an und holte %s %s für %s %s ab.";
+
+//Chat
+//----------------------------------------------------------------------------//
+$LNG["igchat_headline"] = "Greeting frequencies open";
+$LNG["igchat_placeholder"] = "Your message";
+$LNG["igchat_buttontext"] = "Send";

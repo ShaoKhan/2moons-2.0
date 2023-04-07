@@ -146,7 +146,7 @@ abstract class AbstractGamePage
 		$nextPlanet = $db->selectSingle("SELECT id FROM %%PLANETS%% WHERE id > :planetID AND id_owner = :userID AND destruyed = '0' ORDER BY id ASC LIMIT 1 ;", array(':planetID' => $PLANET['id'], ':userID' => $USER['id']));
 
 		$themeSettings	= $THEME->getStyleSettings();
-
+  
 		$this->assign(array(
 			'PlanetSelect'		=> $PlanetSelect,
 			'new_message' 		=> $USER['messages'],
@@ -170,7 +170,6 @@ abstract class AbstractGamePage
 	protected function getPageData()
 	{
 		global $USER, $THEME;
-
 		if($this->getWindow() === 'full') {
 			$this->getNavigationData();
 			$this->getCronjobsTodo();
@@ -253,6 +252,7 @@ abstract class AbstractGamePage
 			'execscript'	=> implode("\n", $this->tplObj->script),
 			'basepath'		=> PROTOCOL.HTTP_HOST.HTTP_BASE,
 			'servertime'	=> _date("M D d H:i:s", TIMESTAMP, $USER['timezone']),
+            'userid'        => $USER['id'],
 		));
 
 		$this->assign(array(

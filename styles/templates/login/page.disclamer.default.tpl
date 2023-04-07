@@ -30,6 +30,15 @@
                         {$disclamerNotice}
 					</address>
 				</div>
+
+				<div class="row">
+					<ul>
+						<li>Index-Video: <a href="https://www.vecteezy.com/video/2158564-3-d-animated-footage-of-planet-mars">3 D Animated Footage of Planet Mars Stock Videos by Vecteezy</a></li>
+						<li>InGameBackground-Video: Video by <a href="https://pixabay.com/users/mikkehouse-3374228/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=video&amp;utm_content=25047">mike lacoste</a> from <a href="https://pixabay.com//?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=video&amp;utm_content=25047">Pixabay</a></li>
+					</ul>
+
+				</div>
+
 			</div>
 		</div>
 	</div>

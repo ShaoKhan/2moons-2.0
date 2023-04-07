@@ -22,6 +22,7 @@
 								<input type="text" class="form-control" name="username" id="username" placeholder="{$LNG.registerUsername}">
 								{if !empty($error.username)}<span class="error errorUsername"></span>{/if}
 								<span class="inputDesc"><small>{$LNG.registerUsernameDesc}</small></span>
+								<input type="hidden" name="musculusMaximus" value="{$pageStarttime}">
 							</div>
 							<div class="form-group">
 								<label for="password">{$LNG.registerPassword}</label>
@@ -38,6 +39,7 @@
 							<div class="form-group">
 								<label for="email">{$LNG.registerEmail}</label>
 								<input type="email" class="form-control" name="email" id="email" placeholder="{$LNG.registerEmail}">
+								<input type="hidden" class="form-control" name="e-mail" id="e-mail" placeholder="{$LNG.registerEmail}">
 								{if !empty($error.password)}<span class="error errorEmail"></span>{/if}
 								<span class="inputDesc"><small>{$LNG.registerEmailDesc}</small></span>
 							</div>

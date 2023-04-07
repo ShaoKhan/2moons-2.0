@@ -66,43 +66,44 @@ $LNG['tn_delete_mode']   = 'A conta às %s será automaticamente apagada!';
 
 //----------------------------------------------------------------------------//
 // Menu
-$LNG['lm_changelog']      = 'Changelog';
-$LNG['lm_overview']       = 'Vista Geral';
-$LNG['lm_galaxy']         = 'Galáxia';
-$LNG['lm_empire']         = 'Império';
-$LNG['lm_fleet']          = 'Frota';
-$LNG['lm_buildings']      = 'Edificios';
-$LNG['lm_research']       = 'Pesquisas';
-$LNG['lm_shipshard']      = 'Hangar';
-$LNG['lm_defenses']       = 'Defesas';
-$LNG['lm_resources']      = 'Recursos';
-$LNG['lm_officiers']      = 'Oficiais';
-$LNG['lm_trader']         = 'Mercado';
-$LNG['lm_fleettrader']    = 'Mercador de Frotas';
-$LNG['lm_technology']     = 'Tecnologias';
-$LNG['lm_messages']       = 'Mensagens';
-$LNG['lm_alliance']       = 'Aliança';
-$LNG['lm_buddylist']      = 'Amizades';
-$LNG['lm_notes']          = 'Notas';
-$LNG['lm_statistics']     = 'Estatisticas';
-$LNG['lm_search']         = 'Procurar';
-$LNG['lm_options']        = 'Opções';
-$LNG['lm_banned']         = 'Banidos';
-$LNG['lm_forums']         = 'Forum';
-$LNG['lm_logout']         = 'Logout';
-$LNG['lm_administration'] = 'Administração';
-$LNG['lm_queue']          = 'Queues';
-$LNG['lm_topkb']          = 'Hall da Fama';
-$LNG['lm_faq']            = 'FAQ';
-$LNG['lm_records']        = 'Recordes';
-$LNG['lm_chat']           = 'Chat';
-$LNG['lm_support']        = 'Suporte';
-$LNG['lm_rules']          = 'Regras';
-$LNG['lm_battlesim']      = 'Simulador';
-$LNG['lm_playercard']     = 'Página de Jogador';
-$LNG['lm_info']           = 'Informação';
-$LNG['lm_disclamer']      = 'Creditos';
-$LNG['lm_connect_ts']     = 'Associado';
+$LNG['lm_changelog']        = 'Changelog';
+$LNG['lm_overview']         = 'Vista Geral';
+$LNG['lm_galaxy']           = 'Galáxia';
+$LNG['lm_empire']           = 'Império';
+$LNG['lm_fleet']            = 'Frota';
+$LNG['lm_buildings']        = 'Edificios';
+$LNG['lm_research']         = 'Pesquisas';
+$LNG['lm_shipshard']        = 'Hangar';
+$LNG['lm_defenses']         = 'Defesas';
+$LNG['lm_resources']        = 'Recursos';
+$LNG['lm_officiers']        = 'Oficiais';
+$LNG['lm_trader']           = 'Mercado';
+$LNG['lm_fleettrader']      = 'Mercador de Frotas';
+$LNG['lm_technology']       = 'Tecnologias';
+$LNG['lm_messages']         = 'Mensagens';
+$LNG['lm_alliance']         = 'Aliança';
+$LNG['lm_buddylist']        = 'Amizades';
+$LNG['lm_notes']            = 'Notas';
+$LNG['lm_statistics']       = 'Estatisticas';
+$LNG['lm_search']           = 'Procurar';
+$LNG['lm_options']          = 'Opções';
+$LNG['lm_banned']           = 'Banidos';
+$LNG['lm_forums']           = 'Forum';
+$LNG['lm_logout']           = 'Logout';
+$LNG['lm_administration']   = 'Administração';
+$LNG['lm_queue']            = 'Queues';
+$LNG['lm_topkb']            = 'Hall da Fama';
+$LNG['lm_faq']              = 'FAQ';
+$LNG['lm_records']          = 'Recordes';
+$LNG['lm_chat']             = 'Chat';
+$LNG['lm_support']          = 'Suporte';
+$LNG['lm_rules']            = 'Regras';
+$LNG['lm_battlesim']        = 'Simulador';
+$LNG['lm_playercard']       = 'Página de Jogador';
+$LNG['lm_info']             = 'Informação';
+$LNG['lm_disclamer']        = 'Creditos';
+$LNG['lm_connect_ts']       = 'Associado';
+$LNG['lm_playerstatistics'] = 'Estatísticas do jogador';
 
 //----------------------------------------------------------------------------//
 // Vista Geral
@@ -1213,3 +1214,9 @@ $LNG["trade_BetaTest"]            = "BETA - Teste de usuário";
 $LNG["trade_ownTrade"]            = "negociação própria";
 $LNG["trade_SellerMessageText"]   = "Um navio de <b>%s</b> atracou no posto de troca e pegou %s %s para %s %s.";
 $LNG["trade_BuyerMessageText"]    = "Seu navio atracou no posto de troca e pegou %s %s para %s %s.";
+
+// Chat
+// ------------------------------------------------ ------------------------------------------ //
+$LNG["igchat_headline"] = "Frequências de saudação abertas";
+$LNG["igchat_placeholder"] = "Sua mensagem";
+$LNG["igchat_buttontext"] = "Enviar";

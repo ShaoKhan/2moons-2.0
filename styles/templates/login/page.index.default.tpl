@@ -36,20 +36,21 @@
                                 <input type="password" class="form-control" name="password" id="password"
                                        placeholder="{$LNG.loginPassword}">
                             </div>
-                            <div style="text-align: right;">
-                                <button type="submit" class="btn btn-primary">{$LNG.loginButton}</button>
+                            <div class="text-center">
+                                <div><button type="submit" class="btn btn-lg btn-primary">{$LNG.loginButton}</button></div>
+                                <div><span class="small">{$loginInfo}</span></div>
                             </div>
                         </form>
-                        {if $facebookEnable}<a href="#" data-href="index.php?page=externalAuth&method=facebook"
-                                               class="fb_login"><img
-                                    src="styles/resource/images/facebook/fb-connect-large.png" alt=""></a>
-                        {/if}<!-- http://b.static.ak.fbcdn.net/rsrc.php/zB6N8/hash/4li2k73z.gif -->
-                        <div style="text-align: center">
-                            <a class="btn btn-lg btn-default" href="index.php?page=register">{$LNG.buttonRegister}</a>
+                        {if $facebookEnable}
+                        <a href="#" data-href="index.php?page=externalAuth&method=facebook" class="fb_login">
+                            <img src="styles/resource/images/facebook/fb-connect-large.png" alt="">
+                        </a>
+                        {/if}
+                        <div class="text-center">
+                            <br />
+                            <a class="btn btn-success" href="index.php?page=register">{$LNG.buttonRegister}</a>
                             {if $mailEnable}-
                                 <a href="index.php?page=lostPassword">{$LNG.buttonLostPassword}</a>{/if}
-                            <br>
-                            <span class="small">{$loginInfo}</span>
                         </div>
                     </div>
                 </div>

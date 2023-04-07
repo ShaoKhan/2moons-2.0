@@ -12,7 +12,7 @@
     {for $i=1 to {$y} }
         <div class="row">
         {for $j=1 to {$x} }
-            <div class="system system_{$i}-{$j} anz-{$playerdata|count}" id="{$i}-{$j}" data-name="{$uni}"></div>
+            <div class="system system_{$i}-{$j} anz-{$playerdata|count}" id="{$i}-{$j}" data-name="{$uni}" ></div>
         {/for}
         {if $x mod 99 < 0}</div>{/if}
         </div>

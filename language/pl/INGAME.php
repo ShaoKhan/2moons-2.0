@@ -85,22 +85,23 @@ $LNG['lm_search']      = 'Szukaj';
 $LNG['lm_options']     = 'Opcje';
 $LNG['lm_banned']      = 'Zbanowani';
 
-$LNG['lm_forums']         = 'Forum';
-$LNG['lm_logout']         = 'Wyloguj';
-$LNG['lm_administration'] = 'Administracja';
-$LNG['lm_queue']          = 'Kolejka';
-$LNG['lm_topkb']          = 'Hala sław';
-$LNG['lm_faq']            = 'FAQ';
-$LNG['lm_records']        = 'Rekordy';
-$LNG['lm_chat']           = 'Chat';
-$LNG['lm_changelog']      = 'Lista zmian';
-$LNG['lm_support']        = 'Pomoc techniczna';
-$LNG['lm_rules']          = 'Regulamin';
-$LNG['lm_battlesim']      = 'Symulator walki';
-$LNG['lm_playercard']     = 'Informacje o graczu';
-$LNG['lm_info']           = 'Informacje';
-$LNG['lm_disclamer']      = 'Kontakt';
-$LNG['lm_connect_ts']     = 'współpracownik';
+$LNG['lm_forums']           = 'Forum';
+$LNG['lm_logout']           = 'Wyloguj';
+$LNG['lm_administration']   = 'Administracja';
+$LNG['lm_queue']            = 'Kolejka';
+$LNG['lm_topkb']            = 'Hala sław';
+$LNG['lm_faq']              = 'FAQ';
+$LNG['lm_records']          = 'Rekordy';
+$LNG['lm_chat']             = 'Chat';
+$LNG['lm_changelog']        = 'Lista zmian';
+$LNG['lm_support']          = 'Pomoc techniczna';
+$LNG['lm_rules']            = 'Regulamin';
+$LNG['lm_battlesim']        = 'Symulator walki';
+$LNG['lm_playercard']       = 'Informacje o graczu';
+$LNG['lm_info']             = 'Informacje';
+$LNG['lm_disclamer']        = 'Kontakt';
+$LNG['lm_connect_ts']       = 'współpracownik';
+$LNG['lm_playerstatistics'] = 'Statystyki gracza';
 
 //----------------------------------------------------------------------------//
 //OVERVIEW
@@ -1210,3 +1211,9 @@ $LNG["trade_BetaTest"]            = "BETA - Test użytkownika";
 $LNG["trade_ownTrade"]            = "własna transakcja";
 $LNG["trade_SellerMessageText"]   = "Statek z <b>%s</b> zadokowany w punkcie handlowym i odebrał %s %s za %s %s.";
 $LNG["trade_BuyerMessageText"]    = "Twój statek zadokował w punkcie handlowym i odebrał %s %s za %s %s.";
+
+// Chat
+// ------------------------------------------------ ------------------------------------------ //
+$LNG["igchat_headline"] = "Częstotliwości powitania otwarte";
+$LNG["igchat_placeholder"] = "Twoja wiadomość";
+$LNG["igchat_buttontext"] = "Wyślij";

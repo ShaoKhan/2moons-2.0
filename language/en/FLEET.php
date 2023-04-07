@@ -146,6 +146,7 @@ $LNG['sys_expe_attack_1_2_2'] 				= 'We flew into an ambush of some starpirates!
 $LNG['sys_expe_attack_1_2_3'] 				= 'The call for help of another expeditionfleet turned out to be a trap of some cunning pirates. A battle was unavoidable.';
 $LNG['sys_expe_attack_1_3_1'] 				= 'The intercepted signals did not came from some unknown aliens but of a secret pirate base! The pirates were not very happy by our presence in their sector.';
 $LNG['sys_expe_attack_1_3_2'] 				= 'The expedition fleet reported heavy fights with unidentified pirate ships!';
+$LNG['sys_expe_attack_1_3_3'] 				= 'The expedition fleet reported heavy fights with unidentified alien ships!';
 $LNG['sys_expe_attack_2_1_1'] 				= 'Your expedition fleet had an uninteresting first contact with new aliens.';
 $LNG['sys_expe_attack_2_1_2'] 				= 'Some strange ships have attacked the expedition fleet without early warning!';
 $LNG['sys_expe_attack_2_1_3'] 				= 'Our expedition was attacked by a small group of unknown ships!';

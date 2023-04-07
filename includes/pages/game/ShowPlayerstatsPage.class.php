@@ -41,13 +41,6 @@ class ShowPlayerstatsPage extends AbstractGamePage
                           'statRow' => $statRow,
                       ]);
 
-
-
-//        foreach($statQry as $reqRow)
-//        {
-//            $requirements[$reqRow['elementID']][$reqRow['requireID']]	= $reqRow['requireLevel'];
-//        }
-
         $this->display('page.playerstats.default.tpl');
     }
 

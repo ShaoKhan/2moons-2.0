@@ -61,43 +61,44 @@ $LNG['tn_delete_mode']   = 'Tu cuenta se encuentra en modo de eliminación. La m
 
 //----------------------------------------------------------------------------//
 //LEFT MENU
-$LNG['lm_overview']       = 'Visión general';
-$LNG['lm_galaxy']         = 'Galaxia';
-$LNG['lm_empire']         = 'Imperio';
-$LNG['lm_fleet']          = 'Base de la Flota';
-$LNG['lm_buildings']      = 'Edificios';
-$LNG['lm_research']       = 'Investigacion';
-$LNG['lm_shipshard']      = 'Hangar';
-$LNG['lm_defenses']       = 'Defensas';
-$LNG['lm_resources']      = 'Recursos';
-$LNG['lm_officiers']      = 'Oficiales';
-$LNG['lm_trader']         = 'Mercader';
-$LNG['lm_fleettrader']    = 'Mercader de Flotas';
-$LNG['lm_technology']     = 'Tecnología';
-$LNG['lm_messages']       = 'Mensajes';
-$LNG['lm_alliance']       = 'Alianza';
-$LNG['lm_buddylist']      = 'Amigos';
-$LNG['lm_notes']          = 'Notas';
-$LNG['lm_statistics']     = 'Estadísticas';
-$LNG['lm_search']         = 'Buscador';
-$LNG['lm_options']        = 'Configuración';
-$LNG['lm_banned']         = 'Sancionados';
-$LNG['lm_forums']         = 'Foro';
-$LNG['lm_logout']         = 'Salir';
-$LNG['lm_administration'] = 'Administración';
-$LNG['lm_queue']          = 'Colas';
-$LNG['lm_topkb']          = 'Salon de la Fama';
-$LNG['lm_faq']            = 'Preg. Frecuentes';
-$LNG['lm_records']        = 'Records';
-$LNG['lm_chat']           = 'Chat';
-$LNG['lm_changelog']      = 'Cambios';
-$LNG['lm_support']        = 'Soporte';
-$LNG['lm_rules']          = 'Reglamento';
-$LNG['lm_battlesim']      = "Sim. de Batallas";
-$LNG['lm_playercard']     = 'Información del Jugador';
-$LNG['lm_info']           = 'Información';
-$LNG['lm_disclamer']      = 'Contacto';
-$LNG['lm_connect_ts']     = 'Asociar';
+$LNG['lm_overview']         = 'Visión general';
+$LNG['lm_galaxy']           = 'Galaxia';
+$LNG['lm_empire']           = 'Imperio';
+$LNG['lm_fleet']            = 'Base de la Flota';
+$LNG['lm_buildings']        = 'Edificios';
+$LNG['lm_research']         = 'Investigacion';
+$LNG['lm_shipshard']        = 'Hangar';
+$LNG['lm_defenses']         = 'Defensas';
+$LNG['lm_resources']        = 'Recursos';
+$LNG['lm_officiers']        = 'Oficiales';
+$LNG['lm_trader']           = 'Mercader';
+$LNG['lm_fleettrader']      = 'Mercader de Flotas';
+$LNG['lm_technology']       = 'Tecnología';
+$LNG['lm_messages']         = 'Mensajes';
+$LNG['lm_alliance']         = 'Alianza';
+$LNG['lm_buddylist']        = 'Amigos';
+$LNG['lm_notes']            = 'Notas';
+$LNG['lm_statistics']       = 'Estadísticas';
+$LNG['lm_search']           = 'Buscador';
+$LNG['lm_options']          = 'Configuración';
+$LNG['lm_banned']           = 'Sancionados';
+$LNG['lm_forums']           = 'Foro';
+$LNG['lm_logout']           = 'Salir';
+$LNG['lm_administration']   = 'Administración';
+$LNG['lm_queue']            = 'Colas';
+$LNG['lm_topkb']            = 'Salon de la Fama';
+$LNG['lm_faq']              = 'Preg. Frecuentes';
+$LNG['lm_records']          = 'Records';
+$LNG['lm_chat']             = 'Chat';
+$LNG['lm_changelog']        = 'Cambios';
+$LNG['lm_support']          = 'Soporte';
+$LNG['lm_rules']            = 'Reglamento';
+$LNG['lm_battlesim']        = "Sim. de Batallas";
+$LNG['lm_playercard']       = 'Información del Jugador';
+$LNG['lm_info']             = 'Información';
+$LNG['lm_disclamer']        = 'Contacto';
+$LNG['lm_connect_ts']       = 'Asociar';
+$LNG['lm_playerstatistics'] = 'Estadísticas del jugador';
 
 //----------------------------------------------------------------------------//
 //OVERVIEW
@@ -1198,3 +1199,9 @@ $LNG["trade_BetaTest"]            = "BETA - Prueba de usuario";
 $LNG["trade_ownTrade"]            = "comercio propio";
 $LNG["trade_SellerMessageText"]   = "Un barco de <b>%s</b> atracó en el puesto comercial y recogió %s %s para %s %s.";
 $LNG["trade_BuyerMessageText"]    = "Su barco atracó en el puesto comercial y recogió %s %s para %s %s.";
+
+// Chat
+// ------------------------------------------------ --------------------------------------------------------- //
+$LNG["igchat_headline"] = "Frecuencias de saludo abiertas";
+$LNG["igchat_placeholder"] = "Tu mensaje";
+$LNG["igchat_buttontext"] = "Enviar";

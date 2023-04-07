@@ -66,5 +66,6 @@ $dbTableNames = [
     'VARS'                => DB_PREFIX.'vars',
     'VARS_RAPIDFIRE'      => DB_PREFIX.'vars_rapidfire',
     'VARS_REQUIRE'        => DB_PREFIX.'vars_requriements',
+    'STATISTICS'          => DB_PREFIX.'stat_course',
 ];
 // MOD-TABLES

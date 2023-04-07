@@ -30,3 +30,9 @@
 	{block name="script"}{/block}	
 </head>
 <body id="{$smarty.get.page|htmlspecialchars|default:'overview'}" class="{$bodyclass}">
+<video class="background-video" playsinline autoplay muted loop poster="src/images/earth.jpg">
+	<source src="styles/resource/images/login/login_bg.mp4" type="video/mp4">
+	<source src="styles/resource/images/login/login_bg.webm" type="video/webm">
+	<source src="styles/resource/images/login/login_bg.ogv" type="video/ogv">
+	Your browser does not support the video tag.
+</video>
