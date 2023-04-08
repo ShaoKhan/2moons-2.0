@@ -1212,6 +1212,6 @@ $LNG["trade_BuyerMessageText"]    = "Dein Schiff dockte am Handelsposten an und 
 
 //Chat
 //----------------------------------------------------------------------------//
-$LNG["igchat_headline"] = "Greeting frequencies open";
-$LNG["igchat_placeholder"] = "Your message";
-$LNG["igchat_buttontext"] = "Send";
+$LNG["igchat_headline"]    = "Grußfrequenzen offen";
+$LNG["igchat_placeholder"] = "Deine Nachricht";
+$LNG["igchat_buttontext"]  = "Abschicken";
