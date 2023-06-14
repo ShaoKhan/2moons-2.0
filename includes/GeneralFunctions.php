@@ -330,9 +330,8 @@ function floatToString($number, $Pro = 0, $output = false){
 	return $output ? str_replace(",",".", sprintf("%.".$Pro."f", $number)) : sprintf("%.".$Pro."f", $number);
 }
 
-function isModuleAvailable($ID)
+function isModuleAvailable($ID, $authlevel = null)
 {
-	global $USER;
 	$modules	= explode(';', Config::get()->moduls);
 
 	if(!isset($modules[$ID]))
@@ -340,7 +339,7 @@ function isModuleAvailable($ID)
 		$modules[$ID] = 1;
 	}
 
-	return $modules[$ID] == 1 || (isset($USER['authlevel']) && $USER['authlevel'] > AUTH_USR);
+	return $modules[$ID] == 1 || ($authlevel !== null && $authlevel > AUTH_USR);
 }
 
 function ClearCache()
