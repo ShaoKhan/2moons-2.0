@@ -16,7 +16,7 @@
 
 	<link rel="stylesheet" type="text/css" href="./styles/resource/css/base/boilerplate.css?v={$smarty.now}">
 	<link rel="stylesheet" type="text/css" href="./styles/resource/css/ingame/main.css?v={$smarty.now}">
-	<link rel="stylesheet" type="text/css" href="./styles/resource/css/ingame/index.css?v={$smarty.now}">
+	<link rel="stylesheet" type="text/css" href="./styles/resource/css/index.css?v={$smarty.now}">
 	<link rel="stylesheet" type="text/css" href="./styles/resource/css/ingame/leftmenu.css?v={$smarty.now}">
 	<link rel="stylesheet" type="text/css" href="./styles/resource/css/base/jquery.css?v={$smarty.now}">
 	<link rel="stylesheet" type="text/css" href="./styles/resource/css/base/jquery.fancybox.css?v={$smarty.now}">

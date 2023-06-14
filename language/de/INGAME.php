@@ -456,9 +456,9 @@ $LNG['tr_call_trader_submit']   = 'Rufe Händler';
 $LNG['tr_exchange_quota']       = 'Der Handelskurs ist';
 $LNG['tr_sell']                 = 'Tauschen gegen';
 $LNG['tr_resource']             = 'Rohstoff';
-$LNG['tr_amount']               = 'Menge';
+$LNG['tr_amount']               = 'Biete';
 $LNG['tr_quota_exchange']       = 'Handelskurs';
-$LNG['tr_exchange']             = 'Tauschen';
+$LNG['tr_exchange']             = 'Tausche';
 
 //----------------------------------------------------------------------------//
 //TECHTREE
