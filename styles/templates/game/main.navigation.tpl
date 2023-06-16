@@ -33,7 +33,8 @@
 		<div class="clear"></div>
 	</div>
 	<div style="margin: 5px 5px;">
-		<a href="https://www.arena-top100.com/index.php?a=in&u=ShaoKhan&id{$uid}" target="_blank"><img src="https://www.arena-top100.com/images/vote/mu-private-servers.png" alt="MU Online Private Servers" width="88" height="53" /></a>
+		{*<a href="https://www.arena-top100.com/index.php?a=in&u=ShaoKhan&id{$uid}" target="_blank"><img src="https://www.arena-top100.com/images/vote/mu-private-servers.png" alt="MU Online Private Servers" width="88" height="53" /></a>*}
+		<a href="https://www.arena-top100.com/index.php?a=in&u=ShaoKhan&id{$uid}" target="_blank"><img src="https://www.arena-top100.com/images/vote/ogame-private-servers.png" alt="OGame Private Servers" width="88" height="53" /></a>
 		<a href="https://browsermmorpg.com/vote.php?id=1642" target="_blank" title="Vote at Browser MMORPG"><img src="https://browsermmorpg.com/img/vote_banner.gif" alt="Vote at Browser MMORPG" /></a>
 	</div>
 	<div class="menu_content_full">
