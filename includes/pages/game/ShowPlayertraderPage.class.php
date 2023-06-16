@@ -322,8 +322,23 @@ class ShowPlayertraderPage extends AbstractGamePage
 
             $seller     = PlayerUtil::getPlayerByIdOrPlanetId($tradeData["playerId"], 0);
             $buyer      = PlayerUtil::getPlayerByIdOrPlanetId($USER["id"]);
-            $sellerText = sprintf($LNG["trade_SellerMessageText"], $buyer["username"], number_format($buy, 0, ',', '.'), ucfirst($LNG['rs_' . $sellType]), number_format($sendResources, 0, ',', '.'), ucfirst($LNG['rs_' . $buyType]));
-            $buyerText  = sprintf($LNG["trade_BuyerMessageText"], number_format($sendResources, 0, ',', '.'), ucfirst($LNG['rs_' . $buyType]), number_format($buy, 0, ',', '.'), ucfirst($LNG['rs_' . $sellType]));
+            $sellerText = sprintf(
+                $LNG["trade_SellerMessageText"],
+                $buyer["username"],
+                number_format($buy, 0, ',', '.'),
+                ucfirst($LNG['rs_' . $sellType]),
+                number_format($sendResources, 0, ',', '.'),
+                ucfirst($LNG['rs_' . $buyType])
+            );
+
+
+            $buyerText  = sprintf(
+                $LNG["trade_BuyerMessageText"],
+                number_format($buy, 0, ',', '.'),
+                ucfirst($LNG['rs_' . $sellType]),
+                number_format($sendResources, 0, ',', '.'),
+                ucfirst($LNG['rs_' . $buyType])
+            );
             //send to seller
             PlayerUtil::sendMessage($tradeData["playerId"], 0, "Handelsposten", 75, "Handel erfolgreich", $sellerText, time(), 0, 1);
             PlayerUtil::sendMessage($USER["id"], 0, "Handelsposten", 75, "Handel erfolgreich", $buyerText, time(), 0, 1);
