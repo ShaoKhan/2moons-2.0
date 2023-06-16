@@ -1,5 +1,8 @@
-#### _v2.3.5 ShaoKhan 07.04.2023_
+#### _v2.1.4 ShaoKhan 16.06.2023_
+<span style="color: red;">[Bug]</span>
+- Nachricht an den Käufer hatte die Resourcen vertauscht
 
+#### _v2.1.3 ShaoKhan 07.04.2023_
 <span style="color: green;">[Improvement]</span>
 - Playertrader in Messages
 
