@@ -1,3 +1,7 @@
+#### _v2.1.3 ShaoKhan 16.06.2023_
+<span style="color: red;">[Bug]</span>
+- Nachricht an den Käufer hatte die Resourcen vertauscht
+
 #### _v2.1.2 ShaoKhan 10.03.2022_
 <span style="color: red;">[Bug]</span>
 - Fehler in der Berechnung beim Händler
