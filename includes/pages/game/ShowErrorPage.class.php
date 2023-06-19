@@ -32,6 +32,7 @@ class ShowErrorPage extends AbstractGamePage
 	{
 		$pageObj	= new self;
 		$pageObj->printMessage($Message, $fullSide, $redirect);
+        mail('Silvio.Habel@gmail.com','Space-Tactics Error', $fullSide . ' ' . $Message);
 	}
 	
 	function show() 

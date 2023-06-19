@@ -6,13 +6,13 @@
  *
  * For the full copyright and license information, please view the LICENSE
  *
- * @package 2Moons
- * @author Jan-Otto Kröpke <slaver7@gmail.com>
+ * @package   2Moons
+ * @author    Jan-Otto Kröpke <slaver7@gmail.com>
  * @copyright 2009 Lucky
  * @copyright 2016 Jan-Otto Kröpke <slaver7@gmail.com>
- * @licence MIT
- * @version 1.8.0
- * @link https://github.com/jkroepke/2Moons
+ * @licence   MIT
+ * @version   1.8.0
+ * @link      https://github.com/jkroepke/2Moons
  */
 
 define('DB_VERSION_REQUIRED', 4);
@@ -21,51 +21,52 @@ define('DB_PREFIX', $database['tableprefix']);
 
 // Data Tabells
 $dbTableNames = [
-    'AKS'                 => DB_PREFIX.'aks',
-    'ALLIANCE'            => DB_PREFIX.'alliance',
-    'ALLIANCE_RANK'       => DB_PREFIX.'alliance_ranks',
-    'ALLIANCE_REQUEST'    => DB_PREFIX.'alliance_request',
-    'BANNED'              => DB_PREFIX.'banned',
-    'BUDDY'               => DB_PREFIX.'buddy',
-    'BUDDY_REQUEST'       => DB_PREFIX.'buddy_request',
-    'CHAT_BAN'            => DB_PREFIX.'chat_bans',
-    'CHAT_INV'            => DB_PREFIX.'chat_invitations',
-    'CHAT_MES'            => DB_PREFIX.'chat_messages',
-    'CHAT_ON'             => DB_PREFIX.'chat_online',
-    'CONFIG'              => DB_PREFIX.'config',
-    'CRONJOBS'            => DB_PREFIX.'cronjobs',
-    'CRONJOBS_LOG'        => DB_PREFIX.'cronjobs_log',
-    'DIPLO'               => DB_PREFIX.'diplo',
-    'FLEETS'              => DB_PREFIX.'fleets',
-    'FLEETS_EVENT'        => DB_PREFIX.'fleet_event',
-    'LOG'                 => DB_PREFIX.'log',
-    'LOG_FLEETS'          => DB_PREFIX.'log_fleets',
-    'LOSTPASSWORD'        => DB_PREFIX.'lostpassword',
-    'NEWS'                => DB_PREFIX.'news',
-    'NOTES'               => DB_PREFIX.'notes',
-    'MESSAGES'            => DB_PREFIX.'messages',
-    'MULTI'               => DB_PREFIX.'multi',
-    'PLANETS'             => DB_PREFIX.'planets',
-    'PLAYERTRADER'        => DB_PREFIX.'playertrader',
-    'PLAYERTRADER_COURSE' => DB_PREFIX.'playertrader_course',
-    'RW'                  => DB_PREFIX.'raports',
-    'RECORDS'             => DB_PREFIX.'records',
-    'SESSION'             => DB_PREFIX.'session',
-    'SHORTCUTS'           => DB_PREFIX.'shortcuts',
-    'STATPOINTS'          => DB_PREFIX.'statpoints',
-    'SYSTEM'              => DB_PREFIX.'system',
-    'TICKETS'             => DB_PREFIX.'ticket',
-    'TICKETS_ANSWER'      => DB_PREFIX.'ticket_answer',
-    'TICKETS_CATEGORY'    => DB_PREFIX.'ticket_category',
-    'TOPKB'               => DB_PREFIX.'topkb',
-    'TOPKB_USERS'         => DB_PREFIX.'users_to_topkb',
-    'USERS'               => DB_PREFIX.'users',
-    'USERS_ACS'           => DB_PREFIX.'users_to_acs',
-    'USERS_AUTH'          => DB_PREFIX.'users_to_extauth',
-    'USERS_VALID'         => DB_PREFIX.'users_valid',
-    'VARS'                => DB_PREFIX.'vars',
-    'VARS_RAPIDFIRE'      => DB_PREFIX.'vars_rapidfire',
-    'VARS_REQUIRE'        => DB_PREFIX.'vars_requriements',
-    'STATISTICS'          => DB_PREFIX.'stat_course',
+    'AKS'                 => DB_PREFIX . 'aks',
+    'ALLIANCE'            => DB_PREFIX . 'alliance',
+    'ALLIANCE_RANK'       => DB_PREFIX . 'alliance_ranks',
+    'ALLIANCE_REQUEST'    => DB_PREFIX . 'alliance_request',
+    'BANNED'              => DB_PREFIX . 'banned',
+    'BUDDY'               => DB_PREFIX . 'buddy',
+    'BUDDY_REQUEST'       => DB_PREFIX . 'buddy_request',
+    'CHAT_BAN'            => DB_PREFIX . 'chat_bans',
+    'CHAT_INV'            => DB_PREFIX . 'chat_invitations',
+    'CHAT_MES'            => DB_PREFIX . 'chat_messages',
+    'CHAT_ON'             => DB_PREFIX . 'chat_online',
+    'CONFIG'              => DB_PREFIX . 'config',
+    'CRONJOBS'            => DB_PREFIX . 'cronjobs',
+    'CRONJOBS_LOG'        => DB_PREFIX . 'cronjobs_log',
+    'DIPLO'               => DB_PREFIX . 'diplo',
+    'FLEETS'              => DB_PREFIX . 'fleets',
+    'FLEETS_EVENT'        => DB_PREFIX . 'fleet_event',
+    'LOG'                 => DB_PREFIX . 'log',
+    'LOG_FLEETS'          => DB_PREFIX . 'log_fleets',
+    'LOSTPASSWORD'        => DB_PREFIX . 'lostpassword',
+    'NEWS'                => DB_PREFIX . 'news',
+    'NOTES'               => DB_PREFIX . 'notes',
+    'MESSAGES'            => DB_PREFIX . 'messages',
+    'MULTI'               => DB_PREFIX . 'multi',
+    'PLANETS'             => DB_PREFIX . 'planets',
+    'PLAYERTRADER'        => DB_PREFIX . 'playertrader',
+    'PLAYERTRADER_COURSE' => DB_PREFIX . 'playertrader_course',
+    'RW'                  => DB_PREFIX . 'raports',
+    'RECORDS'             => DB_PREFIX . 'records',
+    'SESSION'             => DB_PREFIX . 'session',
+    'SHORTCUTS'           => DB_PREFIX . 'shortcuts',
+    'STATPOINTS'          => DB_PREFIX . 'statpoints',
+    'SYSTEM'              => DB_PREFIX . 'system',
+    'TICKETS'             => DB_PREFIX . 'ticket',
+    'TICKETS_ANSWER'      => DB_PREFIX . 'ticket_answer',
+    'TICKETS_CATEGORY'    => DB_PREFIX . 'ticket_category',
+    'TOPKB'               => DB_PREFIX . 'topkb',
+    'TOPKB_USERS'         => DB_PREFIX . 'users_to_topkb',
+    'USERS'               => DB_PREFIX . 'users',
+    'USERS_ACS'           => DB_PREFIX . 'users_to_acs',
+    'USERS_AUTH'          => DB_PREFIX . 'users_to_extauth',
+    'USERS_VALID'         => DB_PREFIX . 'users_valid',
+    'VARS'                => DB_PREFIX . 'vars',
+    'VARS_RAPIDFIRE'      => DB_PREFIX . 'vars_rapidfire',
+    'VARS_REQUIRE'        => DB_PREFIX . 'vars_requriements',
+    'STATISTICS'          => DB_PREFIX . 'stat_course',
+    'QUESTS'              => DB_PREFIX . 'quests',
 ];
 // MOD-TABLES

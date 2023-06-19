@@ -20,6 +20,7 @@
 		<div class="menu_content_left-link"><a href="game.php?page=playertrader">Händler</a></div>
 		{if $authlevel > 0}
 			<div class="menu_content_left-link"><a href="game.php?page=galaxynew">{$LNG.lm_galaxy}-new</a></div>
+			<div class="menu_content_left-link"><a href="game.php?page=quests">{$LNG.lm_quests}</a></div>
 		{/if}
 
 		{if isModuleAvailable($smarty.const.MODULE_ALLIANCE)}<div class="menu_content_left-link"><a href="game.php?page=alliance">{$LNG.lm_alliance}</a></div>{/if}

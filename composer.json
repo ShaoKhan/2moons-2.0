@@ -12,7 +12,8 @@
     "minimum-stability": "stable",
     "require": {
       "ext-pdo": "*",
-      "ext-curl": "*"
+      "ext-curl": "*",
+      "ext-json": "*"
     },
     "require-dev": {}
 }
