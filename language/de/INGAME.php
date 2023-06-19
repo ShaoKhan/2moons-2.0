@@ -1219,25 +1219,29 @@ $LNG["igchat_buttontext"]  = "Abschicken";
 
 // Quests
 //----------------------------------------------------------------------------//
-$LNG["quests_headline"]  = "Verfügbare Quests";
-$LNG["quests_info"]      = "Hier gibt es jede Menge zu tun. Bitte pass auf, Quests sind nicht nach Level oder Flottenstärke sortiert. Du kannst also auch Quests bekommen, die du nicht erfüllen kannst.";
-$LNG["quests_build"]     = "Bauen";
-$LNG["quests_research"]  = "Forschung";
-$LNG["quests_fleet"]     = "Flotte";
-$LNG["quests_defense"]   = "Verteidigung";
-$LNG["quests_attack"]    = "Angreifen";
-$LNG["quests_trade"]     = "Handeln";
-$LNG["quests_mine"]      = "Resourcen";
-$LNG["quests_collect"]   = "Einsammeln";
-$LNG["quests_destroy"]   = "Zerstören";
-$LNG["quests_spy"]       = "Spionieren";
-$LNG["quests_transport"] = "Transportieren";
-$LNG["quests_colonize"]  = "Kolonisieren";
-$LNG["quests_moon"]      = "Monde";
-$LNG["metal"]            = "Metall";
-$LNG["crystal"]          = "Kristall";
-$LNG["deuterium"]        = "Deuterium";
-$LNG["transporter-sl5"]  = "kleiner Transporter";
-$LNG["destroyer"]        = "Zerstörer";
+$LNG["quests_headline"]       = "Verfügbare Quests";
+$LNG["quests_info"]           = "Hier gibt es jede Menge zu tun. Bitte pass auf, Quests sind nicht nach Level oder Flottenstärke sortiert. Du kannst also auch Quests bekommen, die du nicht erfüllen kannst.";
+$LNG["quests_rewards"]        = "Belohnung";
+$LNG["quests_resources"]      = "Ressourcen";
+$LNG["quests_ships"]          = "Schiffe";
+$LNG["quests_build"]          = "Bauen";
+$LNG["quests_research"]       = "Forschung";
+$LNG["quests_fleet"]          = "Flotte";
+$LNG["quests_defense"]        = "Verteidigung";
+$LNG["quests_attack"]         = "Angreifen";
+$LNG["quests_trade"]          = "Handeln";
+$LNG["quests_mine"]           = "Resourcen";
+$LNG["quests_collect"]        = "Einsammeln";
+$LNG["quests_destroy"]        = "Zerstören";
+$LNG["quests_spy"]            = "Spionieren";
+$LNG["quests_transport"]      = "Transportieren";
+$LNG["quests_colonize"]       = "Kolonisieren";
+$LNG["quests_moon"]           = "Monde";
+$LNG["quests_metal"]          = "Metall";
+$LNG["quests_crystal"]        = "Kristall";
+$LNG["quests_crystal"]        = "Deuterium";
+$LNG["quests_transportersl5"] = "kleiner Transporter";
+$LNG["quests_destroyer"]      = "Zerstörer";
+$LNG["quests_get"]            = "Quest starten";
 
 

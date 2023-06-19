@@ -33,17 +33,29 @@ class ShowQuestsPage extends AbstractGamePage
 
         $quests = Database::get()->select("SELECT q.* FROM %%QUESTS%% q WHERE q.active = 1");
         $i = 0;
+
         foreach($quests as $quest) {
 
-            $quests[$i]['type'] =  $LNG['quests_'.$quest['type']];
-            $quests[$i]['reward_details'] = json_decode($quest['reward_details'], true);
+            $quests[$i]['questtype'] =  $LNG['quests_'.$quest['type']];
+            $quests[$i]['rewardtype'] =  $LNG['quests_'.$quest['reward_type']];
+
+            $rewards[$i] =json_decode($quest['reward_details'], 1);
+            foreach($rewards[$i] as $key => $reward) {
+                $rewards[$i][$key] = $reward.' '.$LNG['quests_'.$key];
+            }
+            $quests[$i]['rewarddetails'] = $rewards[$i];
             $i++;
         }
 
-        
         $this->assign(["quests" => $quests]);
         $this->display('page.quests.default.tpl');
     }
 
+
+    public function startQuest($id)
+    {
+        echo 1;
+        exit;
+    }
 
 }
