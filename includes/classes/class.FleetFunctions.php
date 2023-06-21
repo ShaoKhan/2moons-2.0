@@ -1,465 +1,451 @@
 <?php
 
 /**
- *  2Moons 
+ *  2Moons
  *   by Jan-Otto Kröpke 2009-2016
  *
  * For the full copyright and license information, please view the LICENSE
  *
- * @package 2Moons
- * @author Jan-Otto Kröpke <slaver7@gmail.com>
+ * @package   2Moons
+ * @author    Jan-Otto Kröpke <slaver7@gmail.com>
  * @copyright 2009 Lucky
  * @copyright 2016 Jan-Otto Kröpke <slaver7@gmail.com>
- * @licence MIT
- * @version 1.8.0
- * @link https://github.com/jkroepke/2Moons
+ * @licence   MIT
+ * @version   1.8.0
+ * @link      https://github.com/jkroepke/2Moons
  */
 
-class FleetFunctions 
+class FleetFunctions
 {
-	static $allowedSpeed	= array(10 => 100, 9 => 90, 8 => 80, 7 => 70, 6 => 60, 5 => 50, 4 => 40, 3 => 30, 2 => 20, 1 => 10);
-	
-	private static function GetShipConsumption($Ship, $Player)
-	{
-		global $pricelist;
+    static $allowedSpeed = [10 => 100, 9 => 90, 8 => 80, 7 => 70, 6 => 60, 5 => 50, 4 => 40, 3 => 30, 2 => 20, 1 => 10];
 
-		return (($Player['impulse_motor_tech'] >= 5 && $Ship == 202) || ($Player['hyperspace_motor_tech'] >= 8 && $Ship == 211)) ? $pricelist[$Ship]['consumption2'] : $pricelist[$Ship]['consumption'];
-	}
+    public static function getExpeditionLimit($USER)
+    {
+        return floor(sqrt($USER[$GLOBALS['resource'][124]]));
+    }
 
-	private static function OnlyShipByID($Ships, $ShipID)
-	{
-		return isset($Ships[$ShipID]) && count($Ships) === 1;
-	}
+    public static function getDMMissionLimit($USER)
+    {
+        return Config::get($USER['universe'])->max_dm_missions;
+    }
 
-	private static function GetShipSpeed($Ship, $Player)
-	{
-		global $pricelist;
-		
-		$techSpeed	= $pricelist[$Ship]['tech'];
-		
-		if($techSpeed == 4) {
-			$techSpeed = $Player['impulse_motor_tech'] >= 5 ? 2 : 1;
-		}
-		if($techSpeed == 5) {
-			$techSpeed = $Player['hyperspace_motor_tech'] >= 8 ? 3 : 2;
-		}
-			
-		
-		switch($techSpeed)
-		{
-			case 1:
-				$speed	= $pricelist[$Ship]['speed'] * (1 + (0.1 * $Player['combustion_tech']));
-			break;
-			case 2:
-				$speed	= $pricelist[$Ship]['speed'] * (1 + (0.2 * $Player['impulse_motor_tech']));
-			break;
-			case 3:
-				$speed	= $pricelist[$Ship]['speed'] * (1 + (0.3 * $Player['hyperspace_motor_tech']));
-			break;
-			default:
-				$speed	= 0;
-			break;
-		}
+    public static function getMissileRange($Level)
+    {
+        return max(($Level * 5) - 1, 0);
+    }
 
-		return $speed;
-	}
-	
-	public static function getExpeditionLimit($USER)
-	{
-		return floor(sqrt($USER[$GLOBALS['resource'][124]]));
-	}
-	
-	public static function getDMMissionLimit($USER)
-	{
-		return Config::get($USER['universe'])->max_dm_missions;
-	}
-	
-	public static function getMissileRange($Level)
-	{
-		return max(($Level * 5) - 1, 0);
-	}
-	
-	public static function CheckUserSpeed($speed)
-	{
-		return isset(self::$allowedSpeed[$speed]);
-	}
+    public static function CheckUserSpeed($speed)
+    {
+        return isset(self::$allowedSpeed[$speed]);
+    }
 
-	public static function GetTargetDistance($start, $target)
-	{
-		if ($start[0] != $target[0])
-			return abs($start[0] - $target[0]) * 20000;
-		
-		if ($start[1] != $target[1])
-			return abs($start[1] - $target[1]) * 95 + 2700;
-		
-		if ($start[2] != $target[2])
-			return abs($start[2] - $target[2]) * 5 + 1000;
+    public static function GetTargetDistance($start, $target)
+    {
+        if($start[0] != $target[0])
+            return abs($start[0] - $target[0]) * 20000;
 
-		return 5;
-	}
+        if($start[1] != $target[1])
+            return abs($start[1] - $target[1]) * 95 + 2700;
 
-	public static function GetMissionDuration($SpeedFactor, $MaxFleetSpeed, $Distance, $GameSpeed, $USER)
-	{
-		$SpeedFactor	= (3500 / ($SpeedFactor * 0.1));
-		$SpeedFactor	*= pow($Distance * 10 / $MaxFleetSpeed, 0.5);
-		$SpeedFactor	+= 10;
-		$SpeedFactor	/= $GameSpeed;
-		
-		if(isset($USER['factor']['FlyTime']))
-		{
-			$SpeedFactor	*= max(0, 1 + $USER['factor']['FlyTime']);
-		}
-		
-		return max($SpeedFactor, MIN_FLEET_TIME);
-	}
- 
-	public static function GetMIPDuration($startSystem, $targetSystem)
-	{
-		$Distance = abs($startSystem - $targetSystem);
-		$Duration = max(round((30 + 60 * $Distance) / self::GetGameSpeedFactor()), MIN_FLEET_TIME);
-		
-		return $Duration;
-	}
+        if($start[2] != $target[2])
+            return abs($start[2] - $target[2]) * 5 + 1000;
 
-	public static function GetGameSpeedFactor()
-	{
-		return Config::get()->fleet_speed / 2500;
-	}
-	
-	public static function GetMaxFleetSlots($USER)
-	{
-		global $resource;
-		return 1 + $USER[$resource[108]] + $USER['factor']['FleetSlots'];
-	}
+        return 5;
+    }
 
-	public static function GetFleetRoom($Fleet)
-	{
-		global $pricelist;
-		$FleetRoom 				= 0;
-		foreach ($Fleet as $ShipID => $amount)
-		{
-			$FleetRoom		   += $pricelist[$ShipID]['capacity'] * $amount;
-		}
-		return $FleetRoom;
-	}
-	
-	public static function GetFleetMaxSpeed ($Fleets, $Player)
-	{
-		if(empty($Fleets)) {
-			return 0;
-		}
+    public static function GetMissionDuration($SpeedFactor, $MaxFleetSpeed, $Distance, $GameSpeed, $USER)
+    {
+        $SpeedFactor = (3500 / ($SpeedFactor * 0.1));
+        $SpeedFactor *= pow($Distance * 10 / $MaxFleetSpeed, 0.5);
+        $SpeedFactor += 10;
+        $SpeedFactor /= $GameSpeed;
 
-		$FleetArray = (!is_array($Fleets)) ? array($Fleets => 1) : $Fleets;
-		$speedalls 	= array();
-		
-		foreach ($FleetArray as $Ship => $Count) {
-			$speedalls[$Ship] = self::GetShipSpeed($Ship, $Player);
-		}
-		
-		return min($speedalls);
-	}
+        if(isset($USER['factor']['FlyTime'])) {
+            $SpeedFactor *= max(0, 1 + $USER['factor']['FlyTime']);
+        }
 
-	public static function GetFleetConsumption($FleetArray, $MissionDuration, $MissionDistance, $Player, $GameSpeed)
-	{
-		$consumption = 0;
+        return max($SpeedFactor, MIN_FLEET_TIME);
+    }
 
-		foreach ($FleetArray as $Ship => $Count)
-		{
-			$ShipSpeed          = self::GetShipSpeed($Ship, $Player);
-			$ShipConsumption    = self::GetShipConsumption($Ship, $Player);
-			
-			$spd                = 35000 / (round($MissionDuration, 0) * $GameSpeed - 10) * sqrt($MissionDistance * 10 / $ShipSpeed);
-			$basicConsumption   = $ShipConsumption * $Count;
-			$consumption        += $basicConsumption * $MissionDistance / 35000 * (($spd / 10) + 1) * (($spd / 10) + 1);
-		}
-		return (round($consumption) + 1);
-	}
+    public static function GetMIPDuration($startSystem, $targetSystem)
+    {
+        $Distance = abs($startSystem - $targetSystem);
+        $Duration = max(round((30 + 60 * $Distance) / self::GetGameSpeedFactor()), MIN_FLEET_TIME);
 
-	public static function GetFleetMissions($USER, $MisInfo, $Planet)
-	{
-		global $resource;
-		$Missions	= self::GetAvailableMissions($USER, $MisInfo, $Planet);
-		$stayBlock	= array();
+        return $Duration;
+    }
 
-		$haltSpeed	= Config::get($USER['universe'])->halt_speed;
+    public static function GetGameSpeedFactor()
+    {
+        return Config::get()->fleet_speed / 2500;
+    }
 
-		if (in_array(15, $Missions)) {
-			for($i = 1;$i <= $USER[$resource[124]];$i++)
-			{
-				$stayBlock[$i]	= round($i / $haltSpeed, 2);
-			}
-		}
-		elseif(in_array(11, $Missions)) 
-		{
-			$stayBlock = array(1 => 1);
-		}
-		elseif(in_array(5, $Missions)) 
-		{
-			$stayBlock = array(1 => 1, 2 => 2, 4 => 4, 8 => 8, 12 => 12, 16 => 16, 32 => 32);
-		}
-		
-		return array('MissionSelector' => $Missions, 'StayBlock' => $stayBlock);
-	}
+    public static function GetMaxFleetSlots($USER)
+    {
+        global $resource;
+        return 1 + $USER[$resource[108]] + $USER['factor']['FleetSlots'];
+    }
 
-	/*
-	 *
-	 * Unserialize an Fleetstring to an array
-	 *
-	 * @param string
-	 *
-	 * @return array
-	 *
-	 */
+    public static function GetFleetRoom($Fleet)
+    {
+        global $pricelist;
 
-	public static function unserialize($fleetAmount)
-	{
-		$fleetTyps		= explode(';', $fleetAmount);
+        $FleetRoom = 0;
+        foreach($Fleet as $ShipID => $count) {
 
-		$fleetAmount	= array();
+            $FleetRoom += $pricelist[$ShipID]['capacity'] * $count;
+        }
+        return $FleetRoom;
+    }
 
-		foreach ($fleetTyps as $fleetTyp)
-		{
-			$temp = explode(',', $fleetTyp);
+    public static function GetFleetConsumption($FleetArray, $MissionDuration, $MissionDistance, $Player, $GameSpeed)
+    {
+        $consumption = 0;
 
-			if (empty($temp[0])) continue;
+        foreach($FleetArray as $Ship => $Count) {
 
-			if (!isset($fleetAmount[$temp[0]]))
-			{
-				$fleetAmount[$temp[0]] = 0;
-			}
+            $ShipSpeed        = self::GetShipSpeed($Ship, $Player);
+            $ShipConsumption  = self::GetShipConsumption($Ship, $Player);
+            $spd              = 35000 / (round($MissionDuration, 0) * $GameSpeed - 10) * sqrt($MissionDistance * 10 / $ShipSpeed);
+            $basicConsumption = $ShipConsumption * $Count;
+            $consumption      += $basicConsumption * $MissionDistance / 35000 * (($spd / 10) + 1) * (($spd / 10) + 1);
+        }
+        return (round($consumption) + 1);
+    }
 
-			$fleetAmount[$temp[0]] += $temp[1];
-		}
+    private static function GetShipSpeed($Ship, $Player)
+    {
 
-		return $fleetAmount;
-	}
+        global $pricelist;
+        $techSpeed = 0;
 
-	public static function GetACSDuration($acsId)
-	{
-		if(empty($acsId))
-		{
-			return 0;
-		}
+        if(isset($pricelist[$Ship]['tech'])) {
+            $techSpeed = $pricelist[$Ship]['tech'];
+        }
 
-		$sql			= 'SELECT ankunft FROM %%AKS%% WHERE id = :acsId;';
-		$acsEndTime 	= Database::get()->selectSingle($sql, array(
-			':acsId'	=> $acsId
-		), 'ankunft');
-		
-		return empty($acsEndTime) ? $acsEndTime - TIMESTAMP : 0;
-	}
-	
-	public static function setACSTime($timeDifference, $acsId)
-	{
-		if(empty($acsId))
-		{
-			throw new InvalidArgumentException('Missing acsId on '.__CLASS__.'::'.__METHOD__);
-		}
+        if($techSpeed == 4) {
+            $techSpeed = $Player['impulse_motor_tech'] >= 5 ? 2 : 1;
+        }
+        if($techSpeed == 5) {
+            $techSpeed = $Player['hyperspace_motor_tech'] >= 8 ? 3 : 2;
+        }
 
-		$db		= Database::get();
 
-		$sql	= 'UPDATE %%AKS%% SET ankunft = ankunft + :time WHERE id = :acsId;';
-		$db->update($sql, array(
-			':time'		=> $timeDifference,
-			':acsId'	=> $acsId,
-		));
+        switch($techSpeed) {
+            case 1:
+                $speed = $pricelist[$Ship]['speed'] * (1 + (0.1 * $Player['combustion_tech']));
+                break;
+            case 2:
+                $speed = $pricelist[$Ship]['speed'] * (1 + (0.2 * $Player['impulse_motor_tech']));
+                break;
+            case 3:
+                $speed = $pricelist[$Ship]['speed'] * (1 + (0.3 * $Player['hyperspace_motor_tech']));
+                break;
+            default:
+                $speed = 0;
+                break;
+        }
 
-		$sql	= 'UPDATE %%FLEETS%%, %%FLEETS_EVENT%% SET
+        return $speed;
+    }
+
+    private static function GetShipConsumption($Ship, $Player)
+    {
+        global $pricelist;
+
+        return (($Player['impulse_motor_tech'] >= 5 && $Ship == 202) || ($Player['hyperspace_motor_tech'] >= 8 && $Ship == 211))
+            ? $pricelist[$Ship]['consumption2']
+            : $pricelist[$Ship]['consumption'];
+    }
+
+    public static function GetFleetMissions($USER, $MisInfo, $Planet)
+    {
+        global $resource;
+        $Missions  = self::GetAvailableMissions($USER, $MisInfo, $Planet);
+        $stayBlock = [];
+
+        $haltSpeed = Config::get($USER['universe'])->halt_speed;
+
+        if(in_array(15, $Missions)) {
+            for($i = 1; $i <= $USER[$resource[124]]; $i++) {
+                $stayBlock[$i] = round($i / $haltSpeed, 2);
+            }
+        } elseif(in_array(11, $Missions)) {
+            $stayBlock = [1 => 1];
+        } elseif(in_array(5, $Missions)) {
+            $stayBlock = [1 => 1, 2 => 2, 4 => 4, 8 => 8, 12 => 12, 16 => 16, 32 => 32];
+        }
+
+        return ['MissionSelector' => $Missions, 'StayBlock' => $stayBlock];
+    }
+
+    public static function GetAvailableMissions($USER, $MissionInfo, $GetInfoPlanet)
+    {
+        $YourPlanet        = (!empty($GetInfoPlanet['id_owner']) && $GetInfoPlanet['id_owner'] == $USER['id']) ? TRUE : FALSE;
+        $UsedPlanet        = (!empty($GetInfoPlanet['id_owner'])) ? TRUE : FALSE;
+        $availableMissions = [];
+
+        if($MissionInfo['planet'] == (Config::get($USER['universe'])->max_planets + 1) && isModuleAvailable(MODULE_MISSION_EXPEDITION))
+            $availableMissions[] = 15;
+        elseif($MissionInfo['planettype'] == 2) {
+            if((isset($MissionInfo['Ship'][209]) || isset($MissionInfo['Ship'][219])) && isModuleAvailable(MODULE_MISSION_RECYCLE) && !($GetInfoPlanet['der_metal'] == 0 && $GetInfoPlanet['der_crystal'] == 0))
+                $availableMissions[] = 8;
+        } else {
+            if(!$UsedPlanet) {
+                if(isset($MissionInfo['Ship'][208]) && $MissionInfo['planettype'] == 1 && isModuleAvailable(MODULE_MISSION_COLONY))
+                    $availableMissions[] = 7;
+            } else {
+                if(isModuleAvailable(MODULE_MISSION_TRANSPORT))
+                    $availableMissions[] = 3;
+
+                if(!$YourPlanet && self::OnlyShipByID($MissionInfo['Ship'], 210) && isModuleAvailable(MODULE_MISSION_SPY))
+                    $availableMissions[] = 6;
+
+                if(!$YourPlanet) {
+                    if(isModuleAvailable(MODULE_MISSION_ATTACK))
+                        $availableMissions[] = 1;
+                    if(isModuleAvailable(MODULE_MISSION_HOLD))
+                        $availableMissions[] = 5;
+                } elseif(isModuleAvailable(MODULE_MISSION_STATION)) {
+                    $availableMissions[] = 4;
+                }
+
+                if(!empty($MissionInfo['IsAKS']) && !$YourPlanet && isModuleAvailable(MODULE_MISSION_ATTACK) && isModuleAvailable(MODULE_MISSION_ACS))
+                    $availableMissions[] = 2;
+
+                if(!$YourPlanet && $MissionInfo['planettype'] == 3 && isset($MissionInfo['Ship'][214]) && isModuleAvailable(MODULE_MISSION_DESTROY))
+                    $availableMissions[] = 9;
+
+                if($YourPlanet && $MissionInfo['planettype'] == 3 && self::OnlyShipByID($MissionInfo['Ship'], 220) && isModuleAvailable(MODULE_MISSION_DARKMATTER))
+                    $availableMissions[] = 11;
+            }
+        }
+
+        return $availableMissions;
+    }
+
+    private static function OnlyShipByID($Ships, $ShipID)
+    {
+        return isset($Ships[$ShipID]) && count($Ships) === 1;
+    }
+
+    /*
+     *
+     * Unserialize an Fleetstring to an array
+     *
+     * @param string
+     *
+     * @return array
+     *
+     */
+
+    public static function unserialize($fleetAmount)
+    {
+        $fleetTyps = explode(';', $fleetAmount);
+
+        $fleetAmount = [];
+
+        foreach($fleetTyps as $fleetTyp) {
+            $temp = explode(',', $fleetTyp);
+
+            if(empty($temp[0])) continue;
+
+            if(!isset($fleetAmount[$temp[0]])) {
+                $fleetAmount[$temp[0]] = 0;
+            }
+
+            $fleetAmount[$temp[0]] += $temp[1];
+        }
+
+        return $fleetAmount;
+    }
+
+    public static function GetACSDuration($acsId)
+    {
+        if(empty($acsId)) {
+            return 0;
+        }
+
+        $sql        = 'SELECT ankunft FROM %%AKS%% WHERE id = :acsId;';
+        $acsEndTime = Database::get()->selectSingle($sql, [
+            ':acsId' => $acsId,
+        ],                                          'ankunft');
+
+        return empty($acsEndTime) ? $acsEndTime - TIMESTAMP : 0;
+    }
+
+    public static function setACSTime($timeDifference, $acsId)
+    {
+        if(empty($acsId)) {
+            throw new InvalidArgumentException('Missing acsId on ' . __CLASS__ . '::' . __METHOD__);
+        }
+
+        $db = Database::get();
+
+        $sql = 'UPDATE %%AKS%% SET ankunft = ankunft + :time WHERE id = :acsId;';
+        $db->update($sql, [
+            ':time'  => $timeDifference,
+            ':acsId' => $acsId,
+        ]);
+
+        $sql = 'UPDATE %%FLEETS%%, %%FLEETS_EVENT%% SET
 		fleet_start_time = fleet_start_time + :time,
 		fleet_end_stay   = fleet_end_stay + :time,
 		fleet_end_time   = fleet_end_time + :time,
 		time             = time + :time
 		WHERE fleet_group = :acsId AND fleet_id = fleetID;';
 
-		$db->update($sql, array(
-			':time'		=> $timeDifference,
-			':acsId'	=> $acsId,
-		));
+        $db->update($sql, [
+            ':time'  => $timeDifference,
+            ':acsId' => $acsId,
+        ]);
 
-        return true;
-	}
+        return TRUE;
+    }
 
-	public static function GetCurrentFleets($userId, $fleetMission = 10, $thisMission = false)
-	{
-		if($thisMission)
-		{
-			$sql = 'SELECT COUNT(*) as state
+    public static function GetCurrentFleets($userId, $fleetMission = 10, $thisMission = FALSE)
+    {
+        if($thisMission) {
+            $sql = 'SELECT COUNT(*) as state
 			FROM %%FLEETS%%
 			WHERE fleet_owner = :userId
 			AND fleet_mission = :fleetMission;';
-		}
-		else
-		{
-			$sql = 'SELECT COUNT(*) as state
+        } else {
+            $sql = 'SELECT COUNT(*) as state
 			FROM %%FLEETS%%
 			WHERE fleet_owner = :userId
 			AND fleet_mission != :fleetMission;';
-		}
+        }
 
-		$ActualFleets = Database::get()->selectSingle($sql, array(
-			':userId'		=> $userId,
-			':fleetMission'	=> $fleetMission,
-		));
-		return $ActualFleets['state'];
-	}	
-	
-	public static function SendFleetBack($USER, $FleetID)
-	{
-		$db				= Database::get();
+        $ActualFleets = Database::get()->selectSingle($sql, [
+            ':userId'       => $userId,
+            ':fleetMission' => $fleetMission,
+        ]);
+        return $ActualFleets['state'];
+    }
 
-		$sql			= 'SELECT start_time, fleet_start_time, fleet_mission, fleet_group, fleet_owner, fleet_mess FROM %%FLEETS%% WHERE fleet_id = :fleetId;';
-		$fleetResult	= $db->selectSingle($sql, array(
-			':fleetId'	=> $FleetID,
-		));
+    public static function SendFleetBack($USER, $FleetID)
+    {
+        $db = Database::get();
 
-		if ($fleetResult['fleet_owner'] != $USER['id'] || $fleetResult['fleet_mess'] == 1)
-		{
-			return false;
-		}
+        $sql         = 'SELECT start_time, fleet_start_time, fleet_mission, fleet_group, fleet_owner, fleet_mess FROM %%FLEETS%% WHERE fleet_id = :fleetId;';
+        $fleetResult = $db->selectSingle($sql, [
+            ':fleetId' => $FleetID,
+        ]);
 
-		$sqlWhere	= 'fleet_id';
+        if($fleetResult['fleet_owner'] != $USER['id'] || $fleetResult['fleet_mess'] == 1) {
+            return FALSE;
+        }
 
-		if($fleetResult['fleet_mission'] == 1 && $fleetResult['fleet_group'] != 0)
-		{
-			$sql		= 'SELECT COUNT(*) as state FROM %%USERS_ACS%% WHERE acsID = :acsId;';
-			$isInGroup	= $db->selectSingle($sql, array(
-				':acsId'	=> $fleetResult['fleet_group'],
-			), 'state');
+        $sqlWhere = 'fleet_id';
 
-			if($isInGroup)
-			{
-				$sql = 'DELETE %%AKS%%, %%USERS_ACS%%
+        if($fleetResult['fleet_mission'] == 1 && $fleetResult['fleet_group'] != 0) {
+            $sql       = 'SELECT COUNT(*) as state FROM %%USERS_ACS%% WHERE acsID = :acsId;';
+            $isInGroup = $db->selectSingle($sql, [
+                ':acsId' => $fleetResult['fleet_group'],
+            ],                             'state');
+
+            if($isInGroup) {
+                $sql = 'DELETE %%AKS%%, %%USERS_ACS%%
 				FROM %%AKS%%
 				LEFT JOIN %%USERS_ACS%% ON acsID = %%AKS%%.id
 				WHERE %%AKS%%.id = :acsId;';
 
-				$db->delete($sql, array(
-					':acsId'	=> $fleetResult['fleet_group']
-			  	));
-				
-				$FleetID	= $fleetResult['fleet_group'];
-				$sqlWhere	= 'fleet_group';
-			}
-		}
-		
-		if($fleetResult['fleet_mission'] == 5){
-		$fleetEndTime	= ($fleetResult['fleet_start_time'] - $fleetResult['start_time']) + TIMESTAMP;
-		}else{
-		$fleetEndTime	= (TIMESTAMP - $fleetResult['start_time']) + TIMESTAMP;
-		}
-		
-		$sql	= 'UPDATE %%FLEETS%%, %%FLEETS_EVENT%% SET
+                $db->delete($sql, [
+                    ':acsId' => $fleetResult['fleet_group'],
+                ]);
+
+                $FleetID  = $fleetResult['fleet_group'];
+                $sqlWhere = 'fleet_group';
+            }
+        }
+
+        if($fleetResult['fleet_mission'] == 5) {
+            $fleetEndTime = ($fleetResult['fleet_start_time'] - $fleetResult['start_time']) + TIMESTAMP;
+        } else {
+            $fleetEndTime = (TIMESTAMP - $fleetResult['start_time']) + TIMESTAMP;
+        }
+
+        $sql = 'UPDATE %%FLEETS%%, %%FLEETS_EVENT%% SET
 		fleet_group			= :fleetGroup,
 		fleet_end_stay		= :endStayTime,
 		fleet_end_time		= :endTime,
 		fleet_mess			= :fleetState,
 		hasCanceled			= :hasCanceled,
 		time				= :endTime
-		WHERE '.$sqlWhere.' = :id AND fleet_id = fleetID;';
+		WHERE ' . $sqlWhere . ' = :id AND fleet_id = fleetID;';
 
-		$db->update($sql, array(
-			':id'			=> $FleetID,
-			':endStayTime'	=> TIMESTAMP,
-			':endTime'		=> $fleetEndTime,
-			':fleetGroup'	=> 0,
-			':hasCanceled'	=> 1,
-			':fleetState'	=> FLEET_RETURN
-		));
+        $db->update($sql, [
+            ':id'          => $FleetID,
+            ':endStayTime' => TIMESTAMP,
+            ':endTime'     => $fleetEndTime,
+            ':fleetGroup'  => 0,
+            ':hasCanceled' => 1,
+            ':fleetState'  => FLEET_RETURN,
+        ]);
 
-		$sql	= 'UPDATE %%LOG_FLEETS%% SET
+        $sql = 'UPDATE %%LOG_FLEETS%% SET
 		fleet_end_stay	= :endStayTime,
 		fleet_end_time	= :endTime,
 		fleet_mess		= :fleetState,
 		fleet_state		= 2
-		WHERE '.$sqlWhere.' = :id;';
+		WHERE ' . $sqlWhere . ' = :id;';
 
-		$db->update($sql, array(
-			':id'			=> $FleetID,
-			':endStayTime'	=> TIMESTAMP,
-			':endTime'		=> $fleetEndTime,
-			':fleetState'	=> FLEET_RETURN
-		));
+        $db->update($sql, [
+            ':id'          => $FleetID,
+            ':endStayTime' => TIMESTAMP,
+            ':endTime'     => $fleetEndTime,
+            ':fleetState'  => FLEET_RETURN,
+        ]);
 
-		return true;
-	}
-	
-	public static function GetFleetShipInfo($FleetArray, $Player)
-	{
-		$FleetInfo	= array();
-		foreach ($FleetArray as $ShipID => $Amount) {
-			$FleetInfo[$ShipID]	= array('consumption' => self::GetShipConsumption($ShipID, $Player), 'speed' => self::GetFleetMaxSpeed($ShipID, $Player), 'amount' => floatToString($Amount));
-		}
-		return $FleetInfo;
-	}
-	
-	public static function GotoFleetPage($Code = 0)
-	{	
-		global $LNG;
-		if(Config::get()->debug == 1)
-		{
-			$temp = debug_backtrace();
-			echo str_replace($_SERVER["DOCUMENT_ROOT"],'.',$temp[0]['file'])." on ".$temp[0]['line']. " | Code: ".$Code." | Error: ".(isset($LNG['fl_send_error'][$Code]) ? $LNG['fl_send_error'][$Code] : '');
-			exit;
-		}
-		
-		HTTP::redirectTo('game.php?page=fleetTable&code='.$Code);
-	}
-	
-	public static function GetAvailableMissions($USER, $MissionInfo, $GetInfoPlanet)
-	{	
-		$YourPlanet				= (!empty($GetInfoPlanet['id_owner']) && $GetInfoPlanet['id_owner'] == $USER['id']) ? true : false;
-		$UsedPlanet				= (!empty($GetInfoPlanet['id_owner'])) ? true : false;
-		$availableMissions		= array();
-		
-		if ($MissionInfo['planet'] == (Config::get($USER['universe'])->max_planets + 1) && isModuleAvailable(MODULE_MISSION_EXPEDITION))
-			$availableMissions[]	= 15;	
-		elseif ($MissionInfo['planettype'] == 2) {
-			if ((isset($MissionInfo['Ship'][209]) || isset($MissionInfo['Ship'][219])) && isModuleAvailable(MODULE_MISSION_RECYCLE) && !($GetInfoPlanet['der_metal'] == 0 && $GetInfoPlanet['der_crystal'] == 0))
-				$availableMissions[]	= 8;
-		} else {
-			if (!$UsedPlanet) {
-				if (isset($MissionInfo['Ship'][208]) && $MissionInfo['planettype'] == 1 && isModuleAvailable(MODULE_MISSION_COLONY))
-					$availableMissions[]	= 7;
-			} else {
-				if(isModuleAvailable(MODULE_MISSION_TRANSPORT))
-					$availableMissions[]	= 3;
-					
-				if (!$YourPlanet && self::OnlyShipByID($MissionInfo['Ship'], 210) && isModuleAvailable(MODULE_MISSION_SPY))
-					$availableMissions[]	= 6;
+        return TRUE;
+    }
 
-				if (!$YourPlanet) {
-					if(isModuleAvailable(MODULE_MISSION_ATTACK))
-						$availableMissions[]	= 1;
-					if(isModuleAvailable(MODULE_MISSION_HOLD))
-						$availableMissions[]	= 5;}
-						
-				elseif(isModuleAvailable(MODULE_MISSION_STATION)) {
-					$availableMissions[]	= 4;}
-					
-				if (!empty($MissionInfo['IsAKS']) && !$YourPlanet && isModuleAvailable(MODULE_MISSION_ATTACK) && isModuleAvailable(MODULE_MISSION_ACS))
-					$availableMissions[]	= 2;
+    public static function GetFleetShipInfo($FleetArray, $Player)
+    {
+        $FleetInfo = [];
+        foreach($FleetArray as $ShipID => $Amount) {
+            $FleetInfo[$ShipID] = ['consumption' => self::GetShipConsumption($ShipID, $Player), 'speed' => self::GetFleetMaxSpeed($ShipID, $Player), 'amount' => floatToString($Amount)];
+        }
+        return $FleetInfo;
+    }
 
-				if (!$YourPlanet && $MissionInfo['planettype'] == 3 && isset($MissionInfo['Ship'][214]) && isModuleAvailable(MODULE_MISSION_DESTROY))
-					$availableMissions[]	= 9;
+    public static function GetFleetMaxSpeed($Fleets, $Player)
+    {
+        if(empty($Fleets)) {
+            return 0;
+        }
 
-				if ($YourPlanet && $MissionInfo['planettype'] == 3 && self::OnlyShipByID($MissionInfo['Ship'], 220) && isModuleAvailable(MODULE_MISSION_DARKMATTER))
-					$availableMissions[]	= 11;
-			}
-		}
-		
-		return $availableMissions;
-	}
-	
-	public static function CheckBash($Target)
-	{
-		global $USER;
+        $FleetArray = (!is_array($Fleets)) ? [$Fleets => 1] : $Fleets;
+        $speedalls  = [];
 
-		if(!BASH_ON)
-		{
-			return false;
-		}
+        foreach($FleetArray as $Ship => $Count) {
+            $speedalls[$Ship] = self::GetShipSpeed($Ship, $Player);
+        }
+        return min($speedalls);
+    }
 
-		$sql	= 'SELECT COUNT(*) as state
+    public static function GotoFleetPage($Code = 0)
+    {
+        global $LNG;
+        if(Config::get()->debug == 1) {
+            $temp = debug_backtrace();
+            echo str_replace($_SERVER["DOCUMENT_ROOT"], '.', $temp[0]['file']) . " on " . $temp[0]['line'] . " | Code: " . $Code . " | Error: " . (isset($LNG['fl_send_error'][$Code]) ? $LNG['fl_send_error'][$Code] : '');
+            exit;
+        }
+
+        HTTP::redirectTo('game.php?page=fleetTable&code=' . $Code);
+    }
+
+    public static function CheckBash($Target)
+    {
+        global $USER;
+
+        if(!BASH_ON) {
+            return FALSE;
+        }
+
+        $sql = 'SELECT COUNT(*) as state
 		FROM %%LOG_FLEETS%%
 		WHERE fleet_owner = :fleetOwner
 		AND fleet_end_id = :fleetEndId
@@ -467,43 +453,44 @@ class FleetFunctions
 		AND fleet_start_time > :fleetStartTime
 		AND fleet_mission IN (1,2,9);';
 
-		$Count	= Database::get()->selectSingle($sql, array(
-			':fleetOwner'		=> $USER['id'],
-			':fleetEndId'		=> $Target,
-			':fleetState'		=> 2,
-			':fleetStartTime'	=> (TIMESTAMP - BASH_TIME),
-		));
+        $Count = Database::get()->selectSingle($sql, [
+            ':fleetOwner'     => $USER['id'],
+            ':fleetEndId'     => $Target,
+            ':fleetState'     => 2,
+            ':fleetStartTime' => (TIMESTAMP - BASH_TIME),
+        ]);
 
-		return $Count['state'] >= BASH_COUNT;
-	}
-	
-	public static function sendFleet($fleetArray, $fleetMission, $fleetStartOwner, $fleetStartPlanetID,
-		$fleetStartPlanetGalaxy, $fleetStartPlanetSystem, $fleetStartPlanetPlanet, $fleetStartPlanetType,
-		$fleetTargetOwner, $fleetTargetPlanetID, $fleetTargetPlanetGalaxy, $fleetTargetPlanetSystem,
-		$fleetTargetPlanetPlanet, $fleetTargetPlanetType, $fleetResource, $fleetStartTime, $fleetStayTime,
-		$fleetEndTime, $fleetGroup = 0, $missileTarget = 0)
-	{
-		global $resource;
-		$fleetShipCount	= array_sum($fleetArray);
-		$fleetData		= array();
+        return $Count['state'] >= BASH_COUNT;
+    }
 
-		$db				= Database::get();
+    public static function sendFleet(
+        $fleetArray, $fleetMission, $fleetStartOwner, $fleetStartPlanetID,
+        $fleetStartPlanetGalaxy, $fleetStartPlanetSystem, $fleetStartPlanetPlanet, $fleetStartPlanetType,
+        $fleetTargetOwner, $fleetTargetPlanetID, $fleetTargetPlanetGalaxy, $fleetTargetPlanetSystem,
+        $fleetTargetPlanetPlanet, $fleetTargetPlanetType, $fleetResource, $fleetStartTime, $fleetStayTime,
+        $fleetEndTime, $fleetGroup = 0, $missileTarget = 0
+    ) {
+        global $resource;
+        $fleetShipCount = array_sum($fleetArray);
+        $fleetData      = [];
 
-		$params			= array(':planetId'	=> $fleetStartPlanetID);
+        $db = Database::get();
 
-		$planetQuery	= array();
-		foreach($fleetArray as $ShipID => $ShipCount) {
-			$fleetData[]	= $ShipID.','.floatToString($ShipCount);
-			$planetQuery[]	= $resource[$ShipID]." = ".$resource[$ShipID]." - :".$resource[$ShipID];
+        $params = [':planetId' => $fleetStartPlanetID];
 
-			$params[':'.$resource[$ShipID]]	= floatToString($ShipCount);
-		}
+        $planetQuery = [];
+        foreach($fleetArray as $ShipID => $ShipCount) {
+            $fleetData[]   = $ShipID . ',' . floatToString($ShipCount);
+            $planetQuery[] = $resource[$ShipID] . " = " . $resource[$ShipID] . " - :" . $resource[$ShipID];
 
-		$sql	= 'UPDATE %%PLANETS%% SET '.implode(', ', $planetQuery).' WHERE id = :planetId;';
+            $params[':' . $resource[$ShipID]] = floatToString($ShipCount);
+        }
 
-		$db->update($sql, $params);
+        $sql = 'UPDATE %%PLANETS%% SET ' . implode(', ', $planetQuery) . ' WHERE id = :planetId;';
 
-		$sql	= 'INSERT INTO %%FLEETS%% SET
+        $db->update($sql, $params);
+
+        $sql = 'INSERT INTO %%FLEETS%% SET
 		fleet_owner					= :fleetStartOwner,
 		fleet_target_owner			= :fleetTargetOwner,
 		fleet_mission				= :fleetMission,
@@ -530,43 +517,43 @@ class FleetFunctions
 		fleet_target_obj			= :missileTarget,
 		start_time					= :timestamp;';
 
-		$db->insert($sql, array(
-			':fleetStartOwner'			=> $fleetStartOwner,
-			':fleetTargetOwner'			=> $fleetTargetOwner,
-			':fleetMission'				=> $fleetMission,
-			':fleetShipCount'			=> $fleetShipCount,
-			':fleetData'				=> implode(';', $fleetData),
-			':fleetStartTime'			=> $fleetStartTime,
-			':fleetStayTime'			=> $fleetStayTime,
-			':fleetEndTime'				=> $fleetEndTime,
-			':fleetStartPlanetID'		=> $fleetStartPlanetID,
-			':fleetStartPlanetGalaxy'	=> $fleetStartPlanetGalaxy,
-			':fleetStartPlanetSystem'	=> $fleetStartPlanetSystem,
-			':fleetStartPlanetPlanet'	=> $fleetStartPlanetPlanet,
-			':fleetStartPlanetType'		=> $fleetStartPlanetType,
-			':fleetTargetPlanetID'		=> $fleetTargetPlanetID,
-			':fleetTargetPlanetGalaxy'	=> $fleetTargetPlanetGalaxy,
-			':fleetTargetPlanetSystem'	=> $fleetTargetPlanetSystem,
-			':fleetTargetPlanetPlanet'	=> $fleetTargetPlanetPlanet,
-			':fleetTargetPlanetType'	=> $fleetTargetPlanetType,
-			':fleetResource901'			=> $fleetResource[901],
-			':fleetResource902'			=> $fleetResource[902],
-			':fleetResource903'			=> $fleetResource[903],
-			':fleetGroup'				=> $fleetGroup,
-			':missileTarget'			=> $missileTarget,
-			':timestamp'				=> TIMESTAMP,
-			':universe'	   				=> Universe::current(),
-		));
+        $db->insert($sql, [
+            ':fleetStartOwner'         => $fleetStartOwner,
+            ':fleetTargetOwner'        => $fleetTargetOwner,
+            ':fleetMission'            => $fleetMission,
+            ':fleetShipCount'          => $fleetShipCount,
+            ':fleetData'               => implode(';', $fleetData),
+            ':fleetStartTime'          => $fleetStartTime,
+            ':fleetStayTime'           => $fleetStayTime,
+            ':fleetEndTime'            => $fleetEndTime,
+            ':fleetStartPlanetID'      => $fleetStartPlanetID,
+            ':fleetStartPlanetGalaxy'  => $fleetStartPlanetGalaxy,
+            ':fleetStartPlanetSystem'  => $fleetStartPlanetSystem,
+            ':fleetStartPlanetPlanet'  => $fleetStartPlanetPlanet,
+            ':fleetStartPlanetType'    => $fleetStartPlanetType,
+            ':fleetTargetPlanetID'     => $fleetTargetPlanetID,
+            ':fleetTargetPlanetGalaxy' => $fleetTargetPlanetGalaxy,
+            ':fleetTargetPlanetSystem' => $fleetTargetPlanetSystem,
+            ':fleetTargetPlanetPlanet' => $fleetTargetPlanetPlanet,
+            ':fleetTargetPlanetType'   => $fleetTargetPlanetType,
+            ':fleetResource901'        => $fleetResource[901],
+            ':fleetResource902'        => $fleetResource[902],
+            ':fleetResource903'        => $fleetResource[903],
+            ':fleetGroup'              => $fleetGroup,
+            ':missileTarget'           => $missileTarget,
+            ':timestamp'               => TIMESTAMP,
+            ':universe'                => Universe::current(),
+        ]);
 
-		$fleetId	= $db->lastInsertId();
+        $fleetId = $db->lastInsertId();
 
-		$sql	= 'INSERT INTO %%FLEETS_EVENT%% SET fleetID	= :fleetId, `time` = :endTime;';
-		$db->insert($sql, array(
-			':fleetId'	=> $fleetId,
-			':endTime'	=> $fleetStartTime
-		));
+        $sql = 'INSERT INTO %%FLEETS_EVENT%% SET fleetID	= :fleetId, `time` = :endTime;';
+        $db->insert($sql, [
+            ':fleetId' => $fleetId,
+            ':endTime' => $fleetStartTime,
+        ]);
 
-		$sql	= 'INSERT INTO %%LOG_FLEETS%% SET
+        $sql = 'INSERT INTO %%LOG_FLEETS%% SET
 		fleet_id					= :fleetId,
 		fleet_owner					= :fleetStartOwner,
 		fleet_target_owner			= :fleetTargetOwner,
@@ -594,33 +581,112 @@ class FleetFunctions
 		fleet_target_obj			= :missileTarget,
 		start_time					= :timestamp;';
 
-		$db->insert($sql, array(
-			':fleetId'					=> $fleetId,
-			':fleetStartOwner'			=> $fleetStartOwner,
-			':fleetTargetOwner'			=> $fleetTargetOwner,
-			':fleetMission'				=> $fleetMission,
-			':fleetShipCount'			=> $fleetShipCount,
-			':fleetData'				=> implode(';', $fleetData),
-			':fleetStartTime'			=> $fleetStartTime,
-			':fleetStayTime'			=> $fleetStayTime,
-			':fleetEndTime'				=> $fleetEndTime,
-			':fleetStartPlanetID'		=> $fleetStartPlanetID,
-			':fleetStartPlanetGalaxy'	=> $fleetStartPlanetGalaxy,
-			':fleetStartPlanetSystem'	=> $fleetStartPlanetSystem,
-			':fleetStartPlanetPlanet'	=> $fleetStartPlanetPlanet,
-			':fleetStartPlanetType'		=> $fleetStartPlanetType,
-			':fleetTargetPlanetID'		=> $fleetTargetPlanetID,
-			':fleetTargetPlanetGalaxy'	=> $fleetTargetPlanetGalaxy,
-			':fleetTargetPlanetSystem'	=> $fleetTargetPlanetSystem,
-			':fleetTargetPlanetPlanet'	=> $fleetTargetPlanetPlanet,
-			':fleetTargetPlanetType'	=> $fleetTargetPlanetType,
-			':fleetResource901'			=> $fleetResource[901],
-			':fleetResource902'			=> $fleetResource[902],
-			':fleetResource903'			=> $fleetResource[903],
-			':fleetGroup'				=> $fleetGroup,
-			':missileTarget'			=> $missileTarget,
-			':timestamp'				=> TIMESTAMP,
-			':universe'	   				=> Universe::current(),
-		));
-	}
+        $db->insert($sql, [
+            ':fleetId'                 => $fleetId,
+            ':fleetStartOwner'         => $fleetStartOwner,
+            ':fleetTargetOwner'        => $fleetTargetOwner,
+            ':fleetMission'            => $fleetMission,
+            ':fleetShipCount'          => $fleetShipCount,
+            ':fleetData'               => implode(';', $fleetData),
+            ':fleetStartTime'          => $fleetStartTime,
+            ':fleetStayTime'           => $fleetStayTime,
+            ':fleetEndTime'            => $fleetEndTime,
+            ':fleetStartPlanetID'      => $fleetStartPlanetID,
+            ':fleetStartPlanetGalaxy'  => $fleetStartPlanetGalaxy,
+            ':fleetStartPlanetSystem'  => $fleetStartPlanetSystem,
+            ':fleetStartPlanetPlanet'  => $fleetStartPlanetPlanet,
+            ':fleetStartPlanetType'    => $fleetStartPlanetType,
+            ':fleetTargetPlanetID'     => $fleetTargetPlanetID,
+            ':fleetTargetPlanetGalaxy' => $fleetTargetPlanetGalaxy,
+            ':fleetTargetPlanetSystem' => $fleetTargetPlanetSystem,
+            ':fleetTargetPlanetPlanet' => $fleetTargetPlanetPlanet,
+            ':fleetTargetPlanetType'   => $fleetTargetPlanetType,
+            ':fleetResource901'        => $fleetResource[901],
+            ':fleetResource902'        => $fleetResource[902],
+            ':fleetResource903'        => $fleetResource[903],
+            ':fleetGroup'              => $fleetGroup,
+            ':missileTarget'           => $missileTarget,
+            ':timestamp'               => TIMESTAMP,
+            ':universe'                => Universe::current(),
+        ]);
+    }
+
+    // use to check how many ships in summary on a planet
+    //use the fleetArray to check for specific ships
+    public function getFleetOnPlanet(
+        $planetId,
+        $fleetArray = []
+    ) {
+        global $USER;
+        $db        = DATABASE::get();
+        $fleetsize = 0;
+
+        if(!empty($fleetArray)) {
+            $elementIds  = implode(',', array_keys($fleetArray));
+            $neededShips = $db->select("SELECT elementID, name FROM %%VARS%% WHERE class = 200 AND elementID IN (" . $elementIds . ")");
+
+            foreach($neededShips as &$item) {
+                $elementID = $item['elementID'];
+                if(isset($fleetArray[$elementID])) {
+                    $item['count'] = $fleetArray[$elementID];
+                } else {
+                    $item['count'] = 0;
+                }
+
+                $fleetsize += $item['count'];
+
+            }
+
+            foreach($neededShips as $key => $value) {
+                $select[] = $value["name"];
+            }
+
+            $query = 'SELECT ' . implode(',', $select) . ' FROM %%PLANETS%% WHERE id_owner = :userID and id = :planetId';
+            [$values] = $db->select(
+                $query,
+                [
+                    ':userID'   => $USER['id'],
+                    ':planetId' => $planetId,
+                ],
+            );
+
+            $success = $this->compareArrays($neededShips, $values);
+            $return  = ['values' => $values, 'success' => $success];
+
+        } else {
+            $shipsOnPlanet = $db->select("SELECT elementID, name FROM %%VARS%% WHERE class = 200");
+            foreach($shipsOnPlanet as $key => $value) {
+                $select[] = $value["name"];
+            }
+
+            $query = 'SELECT ' . implode(',', $select) . ' FROM %%PLANETS%% WHERE id_owner = :userID and id = :planetId';
+            [$values] = $db->select(
+                $query,
+                [
+                    ':userID'   => $USER['id'],
+                    ':planetId' => $planetId,
+                ],
+            );
+
+            $return = ['values' => $values];
+
+        }
+
+        return $return;
+    }
+
+    private function compareArrays($array1, $array2)
+    {
+        foreach($array1 as $item) {
+            $name  = $item['name'];
+            $count = $item['count'];
+
+            if(!isset($array2[$name]) || $count > $array2[$name]) {
+                return 0;
+            }
+        }
+
+        return 1;
+    }
+
 }

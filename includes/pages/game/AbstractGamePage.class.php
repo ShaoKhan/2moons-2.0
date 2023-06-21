@@ -278,4 +278,14 @@ abstract class AbstractGamePage
 		HTTP::redirectTo($url);
 		exit;
 	}
+
+    public function generateSlug($value)
+    {
+        if(!empty($value)){
+            return uniqid($value);
+        }
+
+        return null;
+    }
+
 }

@@ -1243,5 +1243,5 @@ $LNG["quests_crystal"]        = "Deuterium";
 $LNG["quests_transportersl5"] = "kleiner Transporter";
 $LNG["quests_destroyer"]      = "Zerstörer";
 $LNG["quests_get"]            = "Quest starten";
-
-
+$LNG["quests_noquests"]       = "Heute gibt es nichts zu tun.";
+$LNG["quest_btn_info"]        = "Questinfo";

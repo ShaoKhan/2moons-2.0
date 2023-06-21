@@ -68,5 +68,6 @@ $dbTableNames = [
     'VARS_REQUIRE'        => DB_PREFIX . 'vars_requriements',
     'STATISTICS'          => DB_PREFIX . 'stat_course',
     'QUESTS'              => DB_PREFIX . 'quests',
+    'QUESTS_USER'         => DB_PREFIX . 'quests_user',
 ];
 // MOD-TABLES

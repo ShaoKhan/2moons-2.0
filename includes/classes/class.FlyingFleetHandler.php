@@ -32,6 +32,7 @@ class FlyingFleetHandler
 		10	=> 'MissionCaseMIP',
 		11	=> 'MissionCaseFoundDM',
 		15	=> 'MissionCaseExpedition',
+        20 => 'MissionCaseQuest',
 	);
 		
 	function setToken($token)
