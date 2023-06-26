@@ -236,3 +236,6 @@ const VOTE_DARKMATTER = 25;
 // Minimal resources to get at the trader
 const MIN_RESOURCES_TO_TRADE = 250;
 const TRADER_FEE_PERCENT = 5;
+
+// Quest
+const QUEST_SUCCESS_TRESHOLD = 75;

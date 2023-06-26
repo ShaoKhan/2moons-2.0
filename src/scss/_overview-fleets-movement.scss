@@ -13,7 +13,6 @@
       width: 100%;
     }
 
-
     &.owncolony {
       background: linear-gradient(rgba(15, 145, 5, 0.8), #000000);
       color: #FFFFFF;
@@ -25,17 +24,11 @@
   .return {
     text-align: left;
 
-    &.owncolony, &.owntransport {
+    &.owncolony, &.owntransport, &.ownquest {
       background: linear-gradient(rgba(135, 130, 135, 0.8), #000000);
       color: #FFFFFF;
       padding: 5px 10px;
       width: 100%;
     }
-
   }
 }
-
-
-
-
-

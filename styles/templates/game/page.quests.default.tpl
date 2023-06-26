@@ -49,7 +49,8 @@
                         <div class="row">
                             <div class="offset-2 col-1 quest_destination">Ziel: {$data.destination}</div>
 
-                            <div class="col-4 quest_fleet">
+                            <div class="col-4 quest_science">
+                                {if $data.fleetNeeded|is_array}
                                 <div class="row">
                                     <div class="col-6">Benötigte Flotte:</div>
                                     <div class="col-6">
@@ -58,6 +59,18 @@
                                         {/foreach}
                                     </div>
                                 </div>
+                                {/if}
+
+                                {if $data.scienceNeeded|is_array}
+                                <div class="row">
+                                    <div class="col-6">Benötigte Forschung:</div>
+                                    <div class="col-6">
+                                        {foreach $data.scienceNeeded as $key3 => $science}
+                                            <div>{$science}</div>
+                                        {/foreach}
+                                    </div>
+                                </div>
+                                {/if}
                             </div>
 
                             <div class="col-4 quest_rewards">

@@ -1,9 +1,9 @@
 <?php
-
 /**
  * Space-Tactics - Quests
  * 2023 ShaoKhan
  */
+
 
 class ShowQuestsPage extends AbstractGamePage
 {
@@ -21,32 +21,45 @@ class ShowQuestsPage extends AbstractGamePage
         $fleetFunctions = new FleetFunctions();
         $quests         = Database::get()->select("SELECT q.* FROM %%QUESTS%% q WHERE q.active = 1");
         $UserDeuterium  = $PLANET['deuterium'];
+        $fleets         = [];
+        $sciences       = [];
 
         foreach($quests as $quest) {
 
             $quests[$i]['questtype']  = $LNG['quests_' . $quest['type']];
             $quests[$i]['rewardtype'] = $LNG['quests_' . $quest['reward_type']];
-            $rewards[$i]              = json_decode($quest['reward_details'], 1);
-            $fleetNeeded[$i]          = json_decode($quest['fleet_needed'], 1);
             $destination[$i]          = explode(';', $quest['destination']);
 
-            foreach($rewards[$i] as $key => $reward) {
-                $rewards[$i][$key] = $reward . ' ' . $LNG['quests_' . $key];
+            if($quest['reward_details'] != "") {
+                $rewards[$i] = json_decode($quest['reward_details'], 1);
+                foreach($rewards[$i] as $key => $reward) {
+                    $rewards[$i][$key] = $reward . ' ' . $LNG['quests_' . $key];
+                }
             }
 
-            foreach($fleetNeeded[$i] as $fleetKey => $fleet) {
-                $fleets[$i][$fleetKey] = $fleet . ' ' . $LNG['tech'][$fleetKey];
+            if($quest['fleet_needed'] != "") {
+                $fleetNeeded[$i] = json_decode($quest['fleet_needed'], 1);
+                foreach($fleetNeeded[$i] as $fleetKey => $fleet) {
+                    $fleets[$i][$fleetKey] = $fleet . ' ' . $LNG['tech'][$fleetKey];
+                }
             }
 
+            if($quest['science_needed'] != "") {
+                $scienceNeeded[$i] = json_decode($quest['science_needed'], 1);
+                foreach($scienceNeeded[$i] as $scienceKey => $science) {
+                    $sciences[$i][$scienceKey] = $science . ' ' . $LNG['tech'][$scienceKey];
+                }
+            }
             $quests[$i]['destination']   = $destination[$i][0] . ':' . $destination[$i][1] . ':' . $destination[$i][2];
-            $quests[$i]['rewarddetails'] = $rewards[$i];
-            $quests[$i]['fleetNeeded']   = $fleets[$i];
+            $quests[$i]['rewarddetails'] = $rewards[$i] ?? null;
+            $quests[$i]['fleetNeeded']   = $fleets[$i] ?? null;
+            $quests[$i]['scienceNeeded'] = $sciences[$i] ?? null;
             $i++;
         }
 
         if(isset($_POST["qid"])) {
             $qid = $_POST["qid"];
-            //prüfen, ob ausgewählte Quest bereits aktiv ist um doppeltes aktivieren / Page reload zu verhindern
+            //prüfen, ob ausgewählte Quest bereits aktiv ist um Doppeltes aktivieren / Page reload zu verhindern
             $checkIsQuestActive = $db->select("SELECT qu.* FROM %%QUESTS_USER%% qu WHERE qu.questId = '$qid'");
             if(!$checkIsQuestActive) {
                 //get selected Quest
@@ -125,11 +138,15 @@ class ShowQuestsPage extends AbstractGamePage
                     echo "Du hast nicht genug Slots um noch eine Flotte zu verschicken. Vielleicht hilft dir weitere <a href='game.php?page=research'>Forschung.</a>";
                 }
 
-                $db->insert("INSERT INTO %%QUESTS_USER%% (questId, userId, started_on) VALUES ('" . $qid . "', " . $USER['id'] . ", '" . date('Y-m-d H:i:s') . "')");
-                $db->update("UPDATE %%QUESTS%% SET active = 0 WHERE uuid = '$qid'");
+                #$db->insert("INSERT INTO %%QUESTS_USER%% (questId, userId, started_on) VALUES ('" . $qid . "', " . $USER['id'] . ", '" . date('Y-m-d H:i:s') . "')");
+                #$db->update("UPDATE %%QUESTS%% SET active = 0 WHERE uuid = '$qid'");
                 HTTP::redirectTo('game.php?page=quests');
             }
         }
+
+        require 'includes/classes/class.FlyingFleetHandler.php';
+        $flyingFleetHandler = new FlyingFleetHandler();
+        $flyingFleetHandler->run();
 
         if($quests !== NULL) {
             $this->assign(["quests" => $quests]);

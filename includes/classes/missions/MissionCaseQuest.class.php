@@ -1,19 +1,20 @@
 <?php
 
 /**
- *  2Moons 
- *   by Jan-Otto Kröpke 2009-2016
+ *  Space-Tactics
+ *   by ShaoKhan 2021-2023
  *
  * For the full copyright and license information, please view the LICENSE
  *
- * @package 2Moons
- * @author Jan-Otto Kröpke <slaver7@gmail.com>
- * @copyright 2009 Lucky
- * @copyright 2016 Jan-Otto Kröpke <slaver7@gmail.com>
+ * @package Space-Tactics
+ * @author ShaoKhan <ShaoKhan@gmx.de>
+ * @copyright 2023 ShaoKhan
  * @licence MIT
- * @version 1.8.0
- * @link https://github.com/jkroepke/2Moons
+ * @version 0.1.0
+ * @link https://github.com/ShaoKhan/Space-Tactics
  */
+
+
 class MissionCaseQuest extends MissionFunctions implements Mission
 {		
 	function __construct($Fleet)
@@ -85,4 +86,11 @@ class MissionCaseQuest extends MissionFunctions implements Mission
 
 		$this->RestoreFleet();
 	}
+
+    function determineMissionSuccess(): bool
+    {
+        $successProbability = rand(0, 100);
+        $successThreshold = QUEST_SUCCESS_TRESHOLD;
+        return $successProbability >= $successThreshold;
+    }
 }
