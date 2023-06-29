@@ -36,12 +36,23 @@
                 {/if}
 
                 {foreach $fleets as $index => $fleet}
-                    <div class="row ">
-                        <div id="fleettime_{$index}" class="col-lg-2 fleets" data-fleet-end-time="{$fleet.returntime}"
+                    <div class="row mb-1">
+                        <div id="fleettime_{$index}" class="col-lg-1 fleets" data-fleet-end-time="{$fleet.returntime}"
                              data-fleet-time="{$fleet.resttime}">
                             {pretty_fly_time({$fleet.resttime})}
                         </div>
                         <div class="col-lg-10">{$fleet.text}</div>
+
+                        {if $fleet.fleetState == 0}
+                            <div class="col-1">
+                                <form action="game.php?page=fleetTable&action=cancelfleet" method="post">
+                                    <input name="fleetID" value="{$fleet.fleetId}" type="hidden">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        {/if}
                     </div>
                 {/foreach}
             </div>

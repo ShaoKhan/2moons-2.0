@@ -306,7 +306,6 @@ class FleetFunctions
 	public static function SendFleetBack($USER, $FleetID)
 	{
 		$db				= Database::get();
-
 		$sql			= 'SELECT start_time, fleet_start_time, fleet_mission, fleet_group, fleet_owner, fleet_mess FROM %%FLEETS%% WHERE fleet_id = :fleetId;';
 		$fleetResult	= $db->selectSingle($sql, array(
 			':fleetId'	=> $FleetID,
