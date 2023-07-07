@@ -1,3 +1,7 @@
+#### _v2.1.5 ShaoKhan 07.07.2023_
+<span style="color: green;">[Improvement]</span>
+- Flottenaktion kann in der Übersicht abgebrochen werden, wenn die Flotte nicht bereits auf dem Rückweg ist
+
 #### _v2.1.4 ShaoKhan 16.06.2023_
 <span style="color: red;">[Bug]</span>
 - Nachricht an den Käufer hatte die Resourcen vertauscht
