@@ -54,30 +54,42 @@ class FlyingFleetsTable
         $ACSDone     = [];
         $FleetData   = [];
 
-        foreach($fleetResult as $fleetRow) {
-            if($fleetRow['fleet_mess'] == 0 && $fleetRow['fleet_start_time'] > TIMESTAMP && ($fleetRow['fleet_group'] == 0 || !isset($ACSDone[$fleetRow['fleet_group']]))) {
-                $ACSDone[$fleetRow['fleet_group']]                                = TRUE;
-                $FleetData[$fleetRow['fleet_start_time'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable($fleetRow, 0);
+        if(!empty($fleetResult)) {
+            foreach($fleetResult as $fleetRow) {
+
+                if($fleetRow['fleet_mess'] == 0 && $fleetRow['fleet_start_time'] > TIMESTAMP && ($fleetRow['fleet_group'] == 0 || !isset($ACSDone[$fleetRow['fleet_group']]))) {
+                    $ACSDone[$fleetRow['fleet_group']]                                = TRUE;
+                    $FleetData[$fleetRow['fleet_start_time'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable($fleetRow, 0);
+                }
+
+                if($fleetRow['fleet_mission'] == 10 || ($fleetRow['fleet_mission'] == 4 && $fleetRow['fleet_mess'] == 0)) {
+                    continue;
+                }
+
+                if($fleetRow['fleet_end_stay'] != $fleetRow['fleet_start_time'] && $fleetRow['fleet_end_stay'] > TIMESTAMP && ($this->IsPhalanx && $fleetRow['fleet_end_id'] == $this->planetId)) {
+                    $FleetData[$fleetRow['fleet_end_stay'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable($fleetRow, 2);
+                }
+
+                $MissionsOK = 5;
+                if($fleetRow['fleet_end_stay'] > TIMESTAMP && $fleetRow['fleet_mission'] == $MissionsOK) {
+
+                    $FleetData[$fleetRow['fleet_end_stay'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable($fleetRow, 2);
+                }
+                if($fleetRow['fleet_owner'] != $this->userId) {
+                    continue;
+                }
+
+                //Rückkehr der Flotte
+                if($fleetRow['fleet_end_time'] > TIMESTAMP) {
+                    $FleetData[$fleetRow['fleet_end_time'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable($fleetRow, 1);
+                }
+
             }
-
-            if($fleetRow['fleet_mission'] == 10 || ($fleetRow['fleet_mission'] == 4 && $fleetRow['fleet_mess'] == 0))
-                continue;
-
-            if($fleetRow['fleet_end_stay'] != $fleetRow['fleet_start_time'] && $fleetRow['fleet_end_stay'] > TIMESTAMP && ($this->IsPhalanx && $fleetRow['fleet_end_id'] == $this->planetId))
-                $FleetData[$fleetRow['fleet_end_stay'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable($fleetRow, 2);
-
-            $MissionsOK = 5;
-            if($fleetRow['fleet_end_stay'] > TIMESTAMP && $fleetRow['fleet_mission'] == $MissionsOK)
-                $FleetData[$fleetRow['fleet_end_stay'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable($fleetRow, 2);
-
-            if($fleetRow['fleet_owner'] != $this->userId)
-                continue;
-
-            if($fleetRow['fleet_end_time'] > TIMESTAMP)
-                $FleetData[$fleetRow['fleet_end_time'] . $fleetRow['fleet_id']] = $this->BuildFleetEventTable($fleetRow, 1);
+            #$FleetData[$fleetRow['fleet_end_time'] . $fleetRow['fleet_id']]['fleetId'] = $fleetRow['fleet_id'];
         }
 
         ksort($FleetData);
+
         return $FleetData;
     }
 
@@ -124,10 +136,12 @@ class FlyingFleetsTable
         $Time = 0;
         $Rest = 0;
 
+        // FleetState 0 = Start
+        // FleetState 1 = Rückkehr
+
         if($FleetState == 0 && !$this->IsPhalanx && $fleetRow['fleet_group'] != 0) {
             $acsResult   = $this->getFleets($fleetRow['fleet_group']);
             $EventString = '';
-
             foreach($acsResult as $acsRow) {
                 $Return = $this->getEventData($acsRow, $FleetState);
 
@@ -138,13 +152,15 @@ class FlyingFleetsTable
 
             $EventString = substr($EventString, 0, -8);
         } else {
+
             [$Rest, $EventString, $Time] = $this->getEventData($fleetRow, $FleetState);
         }
-
         return [
             'text'       => $EventString,
             'returntime' => $Time,
             'resttime'   => $Rest,
+            'fleetState' => $FleetState,
+            'fleetId' => $fleetRow['fleet_id'],
         ];
     }
 
@@ -200,38 +216,16 @@ class FlyingFleetsTable
         } else {
             if($Owner == TRUE) {
                 if($Status == FLEET_OUTWARD) {
-                    if(!$Owner && ($MissionType == 1 || $MissionType == 2)) {
-                        $Message     = $LNG['cff_mission_acs'];
-                        $EventString = sprintf($Message, $FleetContent, $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $FleetCapacity);
-                    } elseif($MissionType == 20) { //Quest
-                        $Message     = $LNG['cff_mission_own_20'];
-                        $EventString = sprintf(
-                            $Message,
-                            $FleetContent,
-                            $StartType,
-                            $fleetRow['own_planetname'],
-                            GetStartAddressLink($fleetRow, $FleetType),
-                            GetTargetAddressLink($fleetRow, $FleetType),
-                        );
-                    } else {
-                        $Message     = $LNG['cff_mission_own_0'];
-                        $EventString = sprintf($Message, $FleetContent, $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $FleetCapacity);
-                    }
-                } elseif($Status == FLEET_RETURN) {
-                    if($MissionType == 20) {
-                        $EventString = sprintf(
-                            $LNG['cff_mission_quest_back_20'],
-                            $FleetContent,
-                            $StartType,
-                            $fleetRow['own_planetname'],
-                            GetStartAddressLink($fleetRow, $FleetType),
-                        );
-                    } else {
-                        $EventString = sprintf($LNG['cff_mission_own_1'], $FleetContent, $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $FleetCapacity);
-                    }
-                } else {
+                    if(!$Owner && ($MissionType == 1 || $MissionType == 2))
+                        $Message = $LNG['cff_mission_acs'];
+                    else
+                        $Message = $LNG['cff_mission_own_0'];
+
+                    $EventString = sprintf($Message, $FleetContent, $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $FleetCapacity);
+                } elseif($Status == FLEET_RETURN)
+                    $EventString = sprintf($LNG['cff_mission_own_1'], $FleetContent, $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $FleetCapacity);
+                else
                     $EventString = sprintf($LNG['cff_mission_own_2'], $FleetContent, $StartType, $fleetRow['own_planetname'], GetStartAddressLink($fleetRow, $FleetType), $TargetType, $fleetRow['target_planetname'], GetTargetAddressLink($fleetRow, $FleetType), $FleetCapacity);
-                }
             } else {
                 if($Status == FLEET_HOLD)
                     $Message = $LNG['cff_mission_target_stay'];
@@ -253,6 +247,8 @@ class FlyingFleetsTable
             $Time = $fleetRow['fleet_end_stay'];
         else
             $Time = TIMESTAMP;
+
+
 
         $Rest = $Time - TIMESTAMP;
         return [$Rest, $EventString, $Time];

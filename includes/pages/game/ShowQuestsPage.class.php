@@ -61,7 +61,7 @@ class ShowQuestsPage extends AbstractGamePage
             $qid = $_POST["qid"];
             //prüfen, ob ausgewählte Quest bereits aktiv ist um Doppeltes aktivieren / Page reload zu verhindern
             $checkIsQuestActive = $db->select("SELECT qu.* FROM %%QUESTS_USER%% qu WHERE qu.questId = '$qid'");
-            if(!$checkIsQuestActive) {
+            if(!$checkIsQuestActive || 1 === 1) {
                 //get selected Quest
                 [$selectedQuest] = $db->select("SELECT q.* FROM %%QUESTS%% q WHERE q.uuid = '" . $qid . "'");
                 $neededFleets = json_decode($selectedQuest['fleet_needed'], TRUE);
@@ -138,15 +138,17 @@ class ShowQuestsPage extends AbstractGamePage
                     echo "Du hast nicht genug Slots um noch eine Flotte zu verschicken. Vielleicht hilft dir weitere <a href='game.php?page=research'>Forschung.</a>";
                 }
 
-                #$db->insert("INSERT INTO %%QUESTS_USER%% (questId, userId, started_on) VALUES ('" . $qid . "', " . $USER['id'] . ", '" . date('Y-m-d H:i:s') . "')");
+                $db->insert("INSERT INTO %%QUESTS_USER%% (questId, userId, started_on) VALUES ('" . $qid . "', " . $USER['id'] . ", '" . date('Y-m-d H:i:s') . "')");
                 #$db->update("UPDATE %%QUESTS%% SET active = 0 WHERE uuid = '$qid'");
                 HTTP::redirectTo('game.php?page=quests');
+            }else{
+                echo "Diese Quest ist bereits aktiv.";
             }
         }
 
         require 'includes/classes/class.FlyingFleetHandler.php';
-        $flyingFleetHandler = new FlyingFleetHandler();
-        $flyingFleetHandler->run();
+        #$flyingFleetHandler = new FlyingFleetHandler();
+        #$flyingFleetHandler->run();
 
         if($quests !== NULL) {
             $this->assign(["quests" => $quests]);

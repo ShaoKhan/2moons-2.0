@@ -13,6 +13,7 @@
  * @licence   MIT
  * @version   1.8.0
  * @link      https://github.com/jkroepke/2Moons
+ * @update   2023 ShaoKhan
  */
 
 class FlyingFleetHandler
@@ -61,12 +62,12 @@ class FlyingFleetHandler
 
         foreach($fleetResult as $fleetRow) {
             if(!isset(self::$missionObjPattern[$fleetRow['fleet_mission']])) {
-/*                $sql = 'DELETE FROM %%FLEETS%% WHERE fleet_id = :fleetId;';
+                $sql = 'DELETE FROM %%FLEETS%% WHERE fleet_id = :fleetId;';
                 $db->delete($sql, [
                     ':fleetId' => $fleetRow['fleet_id'],
-                ]);*/
+                ]);
 
-                echo 'Lösche Flotte from FLEETS<br />';
+                #echo 'Lösche Flotte from FLEETS<br />';
                 continue;
             }
 
@@ -76,10 +77,7 @@ class FlyingFleetHandler
             require_once $path;
             /** @var $missionObj Mission */
             $missionObj = new $missionName($fleetRow);
-            echo '<pre>';
-            print_r($missionObj);
-            echo '</pre>';
-            break;
+
             switch($fleetRow['fleet_mess']) {
                 case 0:
                     $missionObj->TargetEvent();
